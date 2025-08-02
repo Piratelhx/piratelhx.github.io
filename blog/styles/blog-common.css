@@ -1,0 +1,281 @@
+/* 博客通用样式文件 */
+/* 基于 AI与UI的张力 文章样式抽象而来 */
+
+/* 字体和基础样式 */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.8;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+}
+
+/* 导航和链接样式 */
+.back-link {
+    background-color: #3b82f6;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+    background-color: #2563eb;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #f8f9fa;
+    color: #666;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 文章内容样式 */
+.blog-content {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.blog-content h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+.blog-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+.blog-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 14px;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+.blog-content p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.blog-content ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.blog-content ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.blog-content li {
+    margin-bottom: 8px;
+    line-height: 1.8;
+}
+
+.blog-content strong {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.blog-content blockquote {
+    border-left: 4px solid #3b82f6;
+    padding-left: 16px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #666;
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+.blog-content code {
+    background-color: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.blog-content pre {
+    background-color: #f1f5f9;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.blog-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* 文章容器和头部样式 */
+.article-container {
+    padding: 32px 24px;
+}
+
+.article-header {
+    margin-bottom: 32px;
+}
+
+.article-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.article-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+.article-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* 标签样式 */
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #f0f9ff;
+    color: #0369a1;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.tag:hover {
+    background-color: #e0f2fe;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .blog-content {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+    
+    .blog-content h1 {
+        font-size: 22px;
+        margin-top: 28px;
+        margin-bottom: 14px;
+    }
+    
+    .blog-content h2 {
+        font-size: 18px;
+        margin-top: 28px;
+        margin-bottom: 14px;
+    }
+    
+    .blog-content h3 {
+        font-size: 16px;
+        margin-top: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .blog-content p {
+        margin-bottom: 18px;
+    }
+    
+    .blog-content ul,
+    .blog-content ol {
+        margin-bottom: 18px;
+        padding-left: 18px;
+    }
+    
+    .article-container {
+        padding: 20px 16px !important;
+    }
+    
+    .article-header {
+        margin-bottom: 24px !important;
+    }
+    
+    .article-title {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+    .blog-content {
+        font-size: 15px;
+    }
+    
+    .blog-content h1 {
+        font-size: 20px;
+    }
+    
+    .blog-content h2 {
+        font-size: 17px;
+    }
+    
+    .blog-content h3 {
+        font-size: 15px;
+    }
+    
+    .article-title {
+        font-size: 22px !important;
+    }
+    
+    .article-container {
+        padding: 16px 12px !important;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .back-link,
+    header,
+    footer {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    .article-container {
+        padding: 0;
+    }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客文章 - 昨夜西风</title>
+    <meta name="description" content="昨夜西风的技术博客，分享AI、产品设计和技术思考">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .blog-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-2xl font-bold text-black">昨夜西风</a>
+                <nav class="space-x-8">
+                    <a href="../index.html#about" class="text-gray-600 hover:text-black">关于我</a>
+                    <a href="index.html" class="text-black font-medium">博客</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold mb-8 text-center">最新文章</h1>
+            
+            <div class="grid gap-8">
+                <!-- 新增：构建聪明Agent的秘密 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">Agent系统</span>
+                            <span class="inline-block px-3 py-1 bg-purple-50 text-purple-800 text-xs font-medium rounded-full ml-2">上下文工程</span>
+                            <span class="inline-block px-3 py-1 bg-green-50 text-green-800 text-xs font-medium rounded-full ml-2">技术实践</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-28</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="manus-context-engineering.html" class="text-gray-900 hover:text-blue-600">🧠 构建聪明Agent的秘密：Manus团队的上下文工程实践全揭秘</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">深度解析Manus AI团队的上下文工程实践，探讨KV缓存优化、工具管理、文件系统设计等Agent系统构建的核心技术要素。</p>
+                        <a href="manus-context-engineering.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 新增：AI的未来蓝图 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">人工智能</span>
+                            <span class="inline-block px-3 py-1 bg-purple-50 text-purple-800 text-xs font-medium rounded-full ml-2">创业战略</span>
+                            <span class="inline-block px-3 py-1 bg-green-50 text-green-800 text-xs font-medium rounded-full ml-2">未来科技</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-27</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="sam-altman-y-combinator-speech.html" class="text-gray-900 hover:text-blue-600">AI的未来蓝图：深度解析Sam Altman在Y Combinator的标志性演讲</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">深度解析Sam Altman在Y Combinator关于人工智能下一个十年的行动蓝图，探讨从创世记到智能体革命的深刻洞见。</p>
+                        <a href="sam-altman-y-combinator-speech.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 新增：解码未来：埃隆·马斯克的思想蓝图 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">思想领袖</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">未来趋势</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">AI</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-27</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="elon-musk-thought-blueprint.html" class="text-gray-900 hover:text-blue-600">解码未来：埃隆·马斯克的思想蓝图——从第一性原理到星际文明</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">深入剖析埃隆·马斯克关于人工智能、星际探索、以及人类未来的完整构想，揭示其背后统一的“第一性原理”思维和宏大的技术蓝图。</p>
+                        <a href="elon-musk-thought-blueprint.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 新增：解码未来代码 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-purple-50 text-purple-800 text-xs font-medium rounded-full">软件开发</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">AI</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">未来趋势</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-27</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="software-3.0-karpathy.html" class="text-gray-900 hover:text-blue-600">解码未来代码：Andrej Karpathy 深度解析软件 3.0 时代</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">Andrej Karpathy 提出了“软件 3.0”的概念，预示着一个由神经网络和数据驱动的全新编程范式。本文将深入探讨其核心思想、技术演进以及它对未来软件开发模式的深远影响。</p>
+                        <a href="software-3.0-karpathy.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 从混沌中“雕刻”出想象力 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">人工智能</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">扩散模型</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">生成AI</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-27</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="diffusion-models-explained.html" class="text-gray-900 hover:text-blue-600">从混沌中“雕刻”出想象力：一文看懂扩散模型背后的技术魔法</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">系统梳理扩散模型原理，解析其如何融合自然语言、物理学与深度学习，构建生成式AI系统。</p>
+                        <a href="diffusion-models-explained.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 在时代的转折点，如何避免成为"库存" -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-orange-50 text-orange-800 text-xs font-medium rounded-full">时代思考</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">职业发展</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">趋势洞察</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-19</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="avoid-becoming-inventory.html" class="text-gray-900 hover:text-blue-600">在时代的转折点，如何避免成为"库存"</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">深度思考时代变迁下的个人发展策略，探讨如何在生产力过剩的时代避免成为"库存"，找到被需要的价值定位。</p>
+                        <a href="avoid-becoming-inventory.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 新增：《高效能人士的七个习惯》深度解读 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-green-50 text-green-800 text-xs font-medium rounded-full">个人成长</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">效能管理</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-07-17</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="seven-habits.html" class="text-gray-900 hover:text-blue-600">《高效能人士的七个习惯》深度解读</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">史蒂芬·柯维的经典著作深度解读，探讨从依赖到独立再到互赖的成长路径，以及七个习惯如何塑造高效能人生。</p>
+                        <a href="seven-habits.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 产品经理的修炼之道 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-purple-50 text-purple-800 text-xs font-medium rounded-full">产品管理</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">职业成长</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-06-09</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="product-manager-cultivation.html" class="text-gray-900 hover:text-blue-600">产品经理的修炼之道</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">深度探讨产品经理成长的六个核心要素：广泛阅读、深度同理心、包容三教九流、培养审美、快速反应和服务意识。成为优秀产品经理的必经之路。</p>
+                        <a href="product-manager-cultivation.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- AI与UI的张力 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">人工智能</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">用户体验</span>
+                            <span class="ml-auto text-sm text-gray-500">2025-06-04</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="ai-ui-tension.html" class="text-gray-900 hover:text-blue-600">AI与UI的张力：人性化与掌控感</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">探讨AI时代用户界面设计的核心矛盾：如何在简化操作的同时保持用户的掌控感，以及这种平衡对产品设计的深远影响。</p>
+                        <a href="ai-ui-tension.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- RAG系统构建的核心技术要素 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-medium rounded-full">RAG</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">AI</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">技术架构</span>
+                            <span class="ml-auto text-sm text-gray-500">2024-12-15</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="rag-system-optimization.html" class="text-gray-900 hover:text-blue-600">🔧 RAG系统构建的核心技术要素</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">RAG（Retrieval-Augmented Generation）是一种结合了信息检索和生成式AI的技术架构，它让AI在回答问题时，先从知识库中检索相关信息，然后生成更准确、更有依据的回答。</p>
+                        <a href="rag-system-optimization.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- Google I/O 2024后的AI格局变化 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">人工智能</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">行业分析</span>
+                            <span class="ml-auto text-sm text-gray-500">2024-05-20</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="ai-landscape-after-google-io.html" class="text-gray-900 hover:text-blue-600">Google I/O 2024后的AI格局变化</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">深度分析Google I/O 2024发布会对AI行业格局的影响，从Gemini升级到AI搜索革命的全面解读。</p>
+                        <a href="ai-landscape-after-google-io.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- AI产品经理 -->
+                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block px-3 py-1 bg-green-50 text-green-800 text-xs font-medium rounded-full">产品管理</span>
+                            <span class="inline-block px-3 py-1 bg-gray-50 text-gray-800 text-xs font-medium rounded-full ml-2">人工智能</span>
+                            <span class="ml-auto text-sm text-gray-500">2024-03-10</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">
+                            <a href="ai-product-manager.html" class="text-gray-900 hover:text-blue-600">AI时代的产品经理</a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">探讨AI时代产品经理的角色转变、核心技能要求以及如何在AI浪潮中保持竞争力。</p>
+                        <a href="ai-product-manager.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="currentYear"></span> 昨夜西风, 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
