@@ -11,31 +11,43 @@
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
-        <div class="container mx-auto px-6 py-4">
+    <header class="bg-white/98 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-gray-100/50">
+        <div class="container mx-auto px-4 md:px-6 py-4 md:py-5">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-black">
+                <a href="#" class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
                     昨夜西风
                 </a>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#about" class="nav-link text-gray-800">关于我</a>
-                    <a href="cv.html" class="nav-link text-gray-800">个人简历</a>
-                    <a href="aiproduct/index.html" class="nav-link text-gray-800">AI作品集</a>
-                    <a href="blog/index.html" class="nav-link text-gray-800">博客</a>
+                <nav class="hidden md:flex space-x-8 lg:space-x-10">
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-all duration-200 font-medium relative group py-2">
+                        关于我
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                    <a href="cv.html" class="text-gray-700 hover:text-blue-600 transition-all duration-200 font-medium relative group py-2">
+                        个人简历
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                    <a href="aiproduct/index.html" class="text-gray-700 hover:text-blue-600 transition-all duration-200 font-medium relative group py-2">
+                        AI作品集
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                    <a href="blog/index.html" class="text-gray-700 hover:text-blue-600 transition-all duration-200 font-medium relative group py-2">
+                        博客
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
                 </nav>
-                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-gray-800">
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-gray-800 p-2 rounded-lg hover:bg-gray-100 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-                <div class="px-6 py-4 space-y-2">
-                    <a href="#about" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">关于我</a>
-                    <a href="cv.html" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">个人简历</a>
-                    <a href="aiproduct/index.html" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">AI作品集</a>
-                    <a href="blog/index.html" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">博客</a>
+            <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm border-t border-gray-200/50 mt-4 rounded-lg">
+                <div class="px-4 py-4 space-y-1">
+                    <a href="#about" class="block py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium">关于我</a>
+                    <a href="cv.html" class="block py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium">个人简历</a>
+                    <a href="aiproduct/index.html" class="block py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium">AI作品集</a>
+                    <a href="blog/index.html" class="block py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium">博客</a>
                 </div>
             </div>
         </div>
@@ -43,72 +55,80 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section py-32 md:py-48">
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-                    你好，我是<span class="text-blue-400">昨夜西风</span>
-                </h1>
-                <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto opacity-90 font-light">
-                    产品经理 | 技术爱好者 | 写作者
-                </p>
-                <a href="blog/index.html" class="btn-primary inline-flex items-center px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300">
-                    阅读我的博客
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                </a>
+        <section class="py-16 md:py-24 lg:py-32 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
+            <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
+                <div class="animate-fade-in-up max-w-5xl mx-auto">
+                    <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 md:mb-8 leading-tight">
+                        你好，我是<br><span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">昨夜西风</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+                        产品经理 | 技术爱好者 | 写作者<br class="hidden sm:block">探索AI时代的产品创新与实践
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center px-4">
+                        <a href="#ai-portfolio" class="btn-primary inline-flex items-center px-8 md:px-10 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+                            查看我的作品
+                            <svg class="w-5 h-5 md:w-6 md:h-6 ml-2 md:ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="blog/index.html" class="inline-flex items-center px-8 md:px-10 py-4 md:py-5 border-2 border-gray-300 text-gray-700 font-semibold text-base md:text-lg rounded-xl hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 w-full sm:w-auto">
+                            阅读我的博客
+                            <svg class="w-4 h-4 md:w-5 md:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-8">关于我</h2>
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div class="text-left">
-                            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                                我是一名产品经理，专注于AI产品的设计与优化。热爱技术，喜欢思考产品背后的逻辑和用户体验的细节。
-                            </p>
-                            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                                在这个快速变化的时代，我通过写作记录思考，分享关于产品管理、技术趋势和个人成长的见解。
-                            </p>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-blue-50 text-blue-800 rounded-full text-sm font-medium">产品管理</span>
-                                <span class="px-4 py-2 bg-green-50 text-green-800 rounded-full text-sm font-medium">人工智能</span>
-                                <span class="px-4 py-2 bg-purple-50 text-purple-800 rounded-full text-sm font-medium">用户体验</span>
-                                <span class="px-4 py-2 bg-orange-50 text-orange-800 rounded-full text-sm font-medium">技术写作</span>
+        <section id="about" class="py-16 md:py-24 bg-white relative">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-12 md:mb-16">
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">关于我</h2>
+                        <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+                    </div>
+                    <div class="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+                        <div class="space-y-6 md:space-y-8">
+                            <div class="prose prose-lg max-w-none">
+                                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-4 md:mb-6">
+                                    我是一名产品经理，专注于AI产品的设计与优化。热爱技术，喜欢思考产品背后的逻辑和用户体验的细节。
+                                </p>
+                                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                                    在这个快速变化的时代，我通过写作记录思考，分享关于产品管理、技术趋势和个人成长的见解。
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 md:gap-4">
+                                <span class="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-shadow">产品管理</span>
+                                <span class="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-50 to-green-100 text-green-800 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-shadow">人工智能</span>
+                                <span class="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-800 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-shadow">用户体验</span>
+                                <span class="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-50 to-orange-100 text-orange-800 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-shadow">技术写作</span>
                             </div>
                         </div>
-                        <div class="">
-                            <div class="card p-8">
-                                <h3 class="text-xl font-bold mb-4 text-gray-800">专业领域</h3>
-                                <ul class="space-y-3 text-gray-600">
-                                    <li class="flex items-center">
-                                        <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        AI产品设计与优化
-                                    </li>
-                                    <li class="flex items-center">
-                                        <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        用户体验研究
-                                    </li>
-                                    <li class="flex items-center">
-                                        <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        数据驱动决策
-                                    </li>
-                                    <li class="flex items-center">
-                                        <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        技术趋势分析
-                                    </li>
-                                </ul>
+                        <div class="lg:pl-8 mt-8 lg:mt-0">
+                            <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 shadow-xl border border-gray-100">
+                                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">专业领域</h3>
+                                <div class="space-y-4 md:space-y-6">
+                                    <div class="flex items-center p-3 md:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105">
+                                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-3 md:mr-4 flex-shrink-0"></div>
+                                        <span class="text-gray-800 font-medium text-base md:text-lg">AI产品设计与优化</span>
+                                    </div>
+                                    <div class="flex items-center p-3 md:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105">
+                                        <div class="w-3 h-3 bg-purple-500 rounded-full mr-3 md:mr-4 flex-shrink-0"></div>
+                                        <span class="text-gray-800 font-medium text-base md:text-lg">用户体验研究</span>
+                                    </div>
+                                    <div class="flex items-center p-3 md:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3 md:mr-4 flex-shrink-0"></div>
+                                        <span class="text-gray-800 font-medium text-base md:text-lg">数据驱动决策</span>
+                                    </div>
+                                    <div class="flex items-center p-3 md:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105">
+                                        <div class="w-3 h-3 bg-orange-500 rounded-full mr-3 md:mr-4 flex-shrink-0"></div>
+                                        <span class="text-gray-800 font-medium text-base md:text-lg">技术趋势分析</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,38 +137,39 @@
         </section>
 
         <!-- AI Portfolio Section -->
-        <section id="ai-portfolio" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
+        <section id="ai-portfolio" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+            <div class="container mx-auto px-4 md:px-6">
                 <div class="max-w-7xl mx-auto">
-                    <div class="text-center mb-12">
-                        <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">AI作品集</h2>
-                        <p class="text-lg text-gray-600">探索AI时代的产品创新与实践</p>
+                    <div class="text-center mb-12 md:mb-16">
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">AI作品集</h2>
+                        <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4 md:mb-6"></div>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">探索AI时代的产品创新与实践，展示前沿技术的实际应用</p>
                     </div>
-                    <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="grid gap-6 md:gap-8 lg:grid-cols-2">
                         <!-- Vibe Coding Project -->
-                        <article class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg overflow-hidden border border-blue-100 hover:shadow-xl transition-all duration-300">
-                            <div class="p-8">
-                                <div class="flex items-center mb-6">
-                                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold mr-4">
+                        <article class="group bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div class="p-6 md:p-8 lg:p-10">
+                                <div class="flex items-start md:items-center mb-6 md:mb-8">
+                                    <div class="bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-2xl font-bold mr-4 md:mr-6 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                                         🎧
                                     </div>
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-gray-900">Vibe Coding</h3>
-                                        <p class="text-blue-600 font-medium">AI时代的氛围编程范式</p>
+                                    <div class="min-w-0">
+                                        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1 md:mb-2">Vibe Coding</h3>
+                                        <p class="text-blue-600 font-semibold text-sm md:text-base lg:text-lg">AI时代的氛围编程范式</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-700 mb-6 leading-relaxed">
-                                    <strong>这份演示材料本身就是用AI制作的！</strong>运用AI Coding技术从零开始生成的专业汇报文稿，既是Vibe Coding理念的实践展示，也是对这一革命性编程范式的深度介绍。完美诠释了"用AI做AI的事"——让技术本身成为最好的技术说明书。
+                                <p class="text-gray-700 mb-6 md:mb-8 leading-relaxed text-sm md:text-base lg:text-lg">
+                                    <strong class="text-blue-600">这份演示材料本身就是用AI制作的！</strong>运用AI Coding技术从零开始生成的专业汇报文稿，既是Vibe Coding理念的实践展示，也是对这一革命性编程范式的深度介绍。完美诠释了"用AI做AI的事"——让技术本身成为最好的技术说明书。
                                 </p>
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">智能汇报PPT</span>
-                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">AI Coding</span>
-                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm font-medium rounded-full">效率提升</span>
+                                <div class="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
+                                    <span class="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 text-xs md:text-sm font-semibold rounded-full border border-blue-200 hover:scale-105 transition-transform duration-200">智能汇报PPT</span>
+                                    <span class="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-800 text-xs md:text-sm font-semibold rounded-full border border-purple-200 hover:scale-105 transition-transform duration-200">AI Coding</span>
+                                    <span class="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-800 text-xs md:text-sm font-semibold rounded-full border border-emerald-200 hover:scale-105 transition-transform duration-200">效率提升</span>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <a href="aiproduct/vibecoding/vibe-coding-presentation.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
+                                    <a href="aiproduct/vibecoding/vibe-coding-presentation.html" class="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-sm md:text-base lg:text-lg rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                                         查看项目
-                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 md:w-5 md:h-5 ml-2 md:ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                         </svg>
                                     </a>
@@ -157,42 +178,49 @@
                         </article>
                         
                         <!-- ChatDoc Project -->
-                        <article class="bg-white rounded-xl shadow-lg border border-gray-200 p-8 hover:shadow-xl transition-shadow duration-300 min-h-[400px]">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Vibe Coding原型</span>
-                                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">产品原型</span>
+                        <article class="group bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div class="p-6 md:p-8 lg:p-10">
+                                <div class="flex items-start md:items-center mb-6 md:mb-8">
+                                    <div class="bg-gradient-to-br from-green-500 via-blue-500 to-teal-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-2xl font-bold mr-4 md:mr-6 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                                        🤖
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1 md:mb-2">ChatDoc</h3>
+                                        <p class="text-green-600 font-semibold text-sm md:text-base lg:text-lg">Vibe Coding原型设计实践</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 mb-6 md:mb-8 leading-relaxed text-sm md:text-base lg:text-lg">
+                                    采用Vibe Coding方式制作的产品原型，探索新的原型设计思路。通过<strong class="text-green-600">自然语言驱动AI生成交互式原型</strong>，体现了Vibe Coding在产品原型设计方面的应用价值，展示了AI时代产品开发的新可能。
+                                </p>
+                                <div class="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
+                                    <span class="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 text-xs md:text-sm font-semibold rounded-full border border-blue-200 hover:scale-105 transition-transform duration-200">Vibe Coding原型</span>
+                                    <span class="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-green-50 to-green-100 text-green-800 text-xs md:text-sm font-semibold rounded-full border border-green-200 hover:scale-105 transition-transform duration-200">产品原型</span>
+                                    <span class="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-teal-50 to-teal-100 text-teal-800 text-xs md:text-sm font-semibold rounded-full border border-teal-200 hover:scale-105 transition-transform duration-200">交互设计</span>
+                                </div>
+                                <div class="mb-6 md:mb-8">
+                                    <h4 class="font-bold text-gray-900 mb-3 md:mb-4 text-lg md:text-xl">核心特点：</h4>
+                                    <div class="space-y-2 md:space-y-3">
+                                        <div class="flex items-center p-2 md:p-3 bg-gray-50 rounded-lg md:rounded-xl">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-2 md:mr-3 flex-shrink-0"></div>
+                                            <span class="text-gray-700 font-medium text-sm md:text-base">自然语言驱动的原型设计</span>
+                                        </div>
+                                        <div class="flex items-center p-2 md:p-3 bg-gray-50 rounded-lg md:rounded-xl">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2 md:mr-3 flex-shrink-0"></div>
+                                            <span class="text-gray-700 font-medium text-sm md:text-base">交互式原型展示</span>
+                                        </div>
+                                        <div class="flex items-center p-2 md:p-3 bg-gray-50 rounded-lg md:rounded-xl">
+                                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-2 md:mr-3 flex-shrink-0"></div>
+                                            <span class="text-gray-700 font-medium text-sm md:text-base">快速迭代优化</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="aiproduct/chatdoc/chatdoc-new.html" class="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-green-500 to-teal-600 text-white font-semibold text-sm md:text-base lg:text-lg rounded-xl hover:from-green-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                                    查看原型演示
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 ml-2 md:ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">🤖 ChatDoc：Vibe Coding原型设计实践</h3>
-                            <p class="text-gray-600 mb-6 leading-relaxed">采用Vibe Coding方式制作的产品原型，探索新的原型设计思路。通过自然语言驱动AI生成交互式原型，体现了Vibe Coding在产品原型设计方面的应用价值。</p>
-                            <div class="mb-6">
-                                <h4 class="font-semibold text-gray-800 mb-3">核心特点：</h4>
-                                <ul class="space-y-2 text-gray-600 text-sm">
-                                    <li class="flex items-center">
-                                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        自然语言驱动的原型设计
-                                    </li>
-                                    <li class="flex items-center">
-                                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        交互式原型展示
-                                    </li>
-                                    <li class="flex items-center">
-                                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        快速迭代优化
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="aiproduct/chatdoc/chatdoc-new.html" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                                查看原型演示
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </a>
                         </article>
                      </div>
                      <div class="text-center mt-12">
@@ -208,61 +236,77 @@
         </section>
 
         <!-- Latest Posts Section -->
-        <section class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
+        <section class="py-12 md:py-16 lg:py-24 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
                 <div class="max-w-7xl mx-auto">
-                    <div class="text-center mb-12">
-                        <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">最新文章</h2>
-                        <p class="text-lg text-gray-600">分享我的思考与见解</p>
+                    <div class="text-center mb-12 md:mb-16">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">最新文章</h2>
+                        <div class="w-16 md:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4 md:mb-6"></div>
+                        <p class="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">分享我的思考与见解，探索技术与产品的深度融合</p>
                     </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         <!-- Blog Post Card 1 - Agent文章 -->
-                        <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-center mb-4">
-                                    <span class="inline-block px-3 py-1 bg-green-50 text-green-800 text-xs font-medium rounded-full">上下文工程</span>
-                                    <span class="ml-auto text-sm text-gray-500">2025-07-28</span>
+                        <article class="group bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="p-4 md:p-6 lg:p-8">
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6 gap-2">
+                                    <span class="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-green-50 to-green-100 text-green-800 text-xs md:text-sm font-semibold rounded-full border border-green-200 w-fit">上下文工程</span>
+                                    <span class="text-xs md:text-sm text-gray-500 font-medium">2025-07-28</span>
                                 </div>
-                                <h2 class="text-xl font-bold mb-3">
-                                    <a href="blog/manus-context-engineering.html" class="text-gray-900 hover:text-blue-600">构建聪明Agent的秘密：Manus团队的上下文工程实践全揭秘</a>
+                                <h2 class="text-lg md:text-xl font-bold mb-3 md:mb-4 leading-tight">
+                                    <a href="blog/manus-context-engineering.html" class="text-gray-900 hover:text-blue-600 transition-colors duration-200 group-hover:text-blue-600">构建聪明Agent的秘密：Manus团队的上下文工程实践全揭秘</a>
                                 </h2>
-                                <p class="text-gray-600 mb-4">深入探讨Manus团队在上下文管理方面的核心策略和技术，揭示如何提升Agent智能水平的秘密...</p>
-                                <a href="blog/manus-context-engineering.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                                <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed">深入探讨Manus团队在上下文管理方面的核心策略和技术，揭示如何提升Agent智能水平的秘密...</p>
+                                <a href="blog/manus-context-engineering.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200 text-sm md:text-base">
+                                    阅读全文
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
                             </div>
                         </article>
                         <!-- Blog Post Card 2 -->
-                        <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-center mb-4">
-                                    <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">人工智能</span>
-                                    <span class="ml-auto text-sm text-gray-500">2025-07-27</span>
+                        <article class="group bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="p-4 md:p-6 lg:p-8">
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6 gap-2">
+                                    <span class="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 text-xs md:text-sm font-semibold rounded-full border border-blue-200 w-fit">人工智能</span>
+                                    <span class="text-xs md:text-sm text-gray-500 font-medium">2025-07-27</span>
                                 </div>
-                                <h2 class="text-xl font-bold mb-3">
-                                    <a href="blog/sam-altman-y-combinator-speech.html" class="text-gray-900 hover:text-blue-600">AI的未来蓝图：深度解析Sam Altman...</a>
+                                <h2 class="text-lg md:text-xl font-bold mb-3 md:mb-4 leading-tight">
+                                    <a href="blog/sam-altman-y-combinator-speech.html" class="text-gray-900 hover:text-blue-600 transition-colors duration-200 group-hover:text-blue-600">AI的未来蓝图：深度解析Sam Altman...</a>
                                 </h2>
-                                <p class="text-gray-600 mb-4">深度解析Sam Altman在Y Combinator关于人工智能下一个十年的行动蓝图...</p>
-                                <a href="blog/sam-altman-y-combinator-speech.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                                <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed">深度解析Sam Altman在Y Combinator关于人工智能下一个十年的行动蓝图...</p>
+                                <a href="blog/sam-altman-y-combinator-speech.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200 text-sm md:text-base">
+                                    阅读全文
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
                             </div>
                         </article>
                         <!-- Blog Post Card 3 -->
-                        <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-center mb-4">
-                                    <span class="inline-block px-3 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">思想领袖</span>
-                                    <span class="ml-auto text-sm text-gray-500">2025-07-27</span>
+                        <article class="group bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="p-4 md:p-6 lg:p-8">
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6 gap-2">
+                                    <span class="inline-block px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-800 text-xs md:text-sm font-semibold rounded-full border border-purple-200 w-fit">思想领袖</span>
+                                    <span class="text-xs md:text-sm text-gray-500 font-medium">2025-07-27</span>
                                 </div>
-                                <h2 class="text-xl font-bold mb-3">
-                                    <a href="blog/elon-musk-thought-blueprint.html" class="text-gray-900 hover:text-blue-600">解码未来：埃隆·马斯克的思想蓝图</a>
+                                <h2 class="text-lg md:text-xl font-bold mb-3 md:mb-4 leading-tight">
+                                    <a href="blog/elon-musk-thought-blueprint.html" class="text-gray-900 hover:text-blue-600 transition-colors duration-200 group-hover:text-blue-600">解码未来：埃隆·马斯克的思想蓝图</a>
                                 </h2>
-                                <p class="text-gray-600 mb-4">深入剖析埃隆·马斯克关于人工智能、星际探索、以及人类未来的完整构想...</p>
-                                <a href="blog/elon-musk-thought-blueprint.html" class="text-blue-600 hover:text-blue-800 font-medium">阅读全文 →</a>
+                                <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed">深入剖析埃隆·马斯克关于人工智能、星际探索、以及人类未来的完整构想...</p>
+                                <a href="blog/elon-musk-thought-blueprint.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200 text-sm md:text-base">
+                                    阅读全文
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
                             </div>
                         </article>
                     </div>
-                    <div class="text-center mt-12">
-                        <a href="blog/index.html" class="btn-primary inline-flex items-center px-8 py-4 rounded-lg font-medium">
+                    <div class="text-center mt-8 md:mt-12">
+                        <a href="blog/index.html" class="btn-primary inline-flex items-center px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base">
                             查看所有文章
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 ml-1 md:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                             </svg>
                         </a>
@@ -273,28 +317,36 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-16">
-        <div class="container mx-auto px-6 text-center">
-            <a href="#" class="text-2xl font-bold mb-8 inline-block">昨夜西风</a>
-            <p class="text-sm mb-8 opacity-80">
-                &copy; <span id="currentYear"></span> 昨夜西风，保留所有权利。
-            </p>
-            <div class="flex justify-center space-x-8">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors transform hover:scale-110">
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"></path>
-                    </svg>
-                </a>
-                <a href="blog/index.html" class="text-gray-400 hover:text-white transition-colors transform hover:scale-110">
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
-                    </svg>
-                </a>
-                <a href="https://github.com/yourusername" class="text-gray-400 hover:text-white transition-colors transform hover:scale-110">
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
-                    </svg>
-                </a>
+    <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12 md:py-16 lg:py-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center">
+                <div class="mb-6 md:mb-8 lg:mb-10">
+                    <a href="#" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4 md:mb-6 inline-block hover:scale-105 transition-transform duration-300">昨夜西风</a>
+                    <div class="w-16 md:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
+                </div>
+                <p class="text-gray-300 mb-6 md:mb-8 lg:mb-10 text-base md:text-lg font-medium px-4">探索技术边界，分享创新思维</p>
+                <div class="flex justify-center space-x-4 md:space-x-6 lg:space-x-8 mb-6 md:mb-8 lg:mb-10">
+                    <a href="#" class="group p-3 md:p-4 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl">
+                        <svg class="h-5 w-5 md:h-6 md:w-6 text-gray-400 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"></path>
+                        </svg>
+                    </a>
+                    <a href="blog/index.html" class="group p-3 md:p-4 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl">
+                        <svg class="h-5 w-5 md:h-6 md:w-6 text-gray-400 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/yourusername" class="group p-3 md:p-4 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl">
+                        <svg class="h-5 w-5 md:h-6 md:w-6 text-gray-400 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="border-t border-gray-700/50 pt-6 md:pt-8">
+                    <p class="text-gray-400 text-xs md:text-sm px-4">
+                        &copy; <span id="currentYear"></span> 昨夜西风，保留所有权利。 | 用心创造，用技术改变世界
+                    </p>
+                </div>
             </div>
         </div>
     </footer>

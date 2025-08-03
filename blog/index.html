@@ -101,80 +101,82 @@
     <!-- Header Section -->
     <header class="glass-effect sticky top-0 z-50 border-b border-white/20 animate-fade-in-down">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="../index.html" class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
+            <div class="flex justify-between items-center h-14 md:h-16">
+                <a href="../index.html" class="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
                     昨夜西风
                 </a>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="../index.html#about" class="text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200 relative group">
+                <nav class="hidden md:flex space-x-4 lg:space-x-8">
+                    <a href="../index.html#about" class="text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200 relative group text-sm lg:text-base">
                         关于我
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
                     </a>
-                    <a href="../cv.html" class="text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200 relative group">
+                    <a href="../cv.html" class="text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200 relative group text-sm lg:text-base">
                         个人简历
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
                     </a>
-                    <a href="../aiproduct/index.html" class="text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200 relative group">
+                    <a href="../aiproduct/index.html" class="text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200 relative group text-sm lg:text-base">
                         AI作品集
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
                     </a>
-                    <a href="index.html" class="text-primary-600 font-semibold relative">
+                    <a href="index.html" class="text-primary-600 font-semibold relative text-sm lg:text-base">
                         博客
                         <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary-600"></span>
                     </a>
                 </nav>
                 <!-- Mobile menu button -->
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
-                    <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 md:w-6 md:h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm border-t border-slate-200">
-                <div class="px-4 py-4 space-y-2">
-                    <a href="../index.html" class="block py-2 text-slate-600 hover:text-primary-600 transition-colors">首页</a>
-                    <a href="../cv.html" class="block py-2 text-slate-600 hover:text-primary-600 transition-colors">个人简历</a>
-                    <a href="../aiproduct/index.html" class="block py-2 text-slate-600 hover:text-primary-600 transition-colors">AI作品集</a>
+            <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm border-t border-slate-200 rounded-b-lg mx-2 mb-2">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="../index.html" class="block py-2 px-2 text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-colors text-sm">首页</a>
+                    <a href="../cv.html" class="block py-2 px-2 text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-colors text-sm">个人简历</a>
+                    <a href="../aiproduct/index.html" class="block py-2 px-2 text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-colors text-sm">AI作品集</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 lg:py-16">
         <div class="max-w-7xl mx-auto">
             <!-- Page Title -->
-            <section class="text-center mb-12 lg:mb-16 animate-fade-in-up">
-                <h1 class="text-4xl lg:text-5xl font-bold text-slate-800 mb-4">
+            <section class="text-center mb-8 md:mb-12 lg:mb-16 animate-fade-in-up">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 mb-3 md:mb-4 px-4">
                     最新<span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">文章</span>
                 </h1>
-                <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                <p class="text-sm md:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed px-4">
                     探索AI、产品设计与技术思考的深度内容，分享实践经验与前沿洞察
                 </p>
             </section>
             
             <!-- Articles Grid -->
-            <section class="grid gap-6 lg:gap-8 animate-fade-in" style="animation-delay: 0.2s">
+            <section class="grid gap-4 md:gap-6 lg:gap-8 animate-fade-in" style="animation-delay: 0.2s">
                 <!-- 构建聪明Agent的秘密 -->
-                <article class="blog-card bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 overflow-hidden group p-6 lg:p-8">
-                        <header class="flex flex-wrap items-center gap-2 mb-4">
-                            <span class="tag inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 text-xs font-semibold rounded-full border border-blue-200">Agent系统</span>
-                            <span class="tag inline-flex items-center px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 text-xs font-semibold rounded-full border border-purple-200">上下文工程</span>
-                            <span class="tag inline-flex items-center px-3 py-1 bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-200">技术实践</span>
-                            <time class="ml-auto text-sm text-slate-500 font-medium" datetime="2025-07-28">2025年7月28日</time>
+                <article class="blog-card bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-lg border border-white/50 overflow-hidden group p-4 md:p-6 lg:p-8">
+                        <header class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 mb-3 md:mb-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag inline-flex items-center px-2 md:px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 text-xs font-semibold rounded-full border border-blue-200">Agent系统</span>
+                                <span class="tag inline-flex items-center px-2 md:px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 text-xs font-semibold rounded-full border border-purple-200">上下文工程</span>
+                                <span class="tag inline-flex items-center px-2 md:px-3 py-1 bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-200">技术实践</span>
+                            </div>
+                            <time class="text-xs md:text-sm text-slate-500 font-medium sm:ml-auto" datetime="2025-07-28">2025年7月28日</time>
                         </header>
-                        <h2 class="text-xl lg:text-2xl font-bold mb-4 leading-tight">
+                        <h2 class="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 leading-tight">
                             <a href="manus-context-engineering.html" class="text-slate-800 hover:text-primary-600 transition-colors duration-200 group-hover:text-primary-600">
                                 🧠 构建聪明Agent的秘密：Manus团队的上下文工程实践全揭秘
                             </a>
                         </h2>
-                        <p class="text-slate-600 mb-6 leading-relaxed text-base">
+                        <p class="text-slate-600 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
                             深度解析Manus AI团队的上下文工程实践，探讨KV缓存优化、工具管理、文件系统设计等Agent系统构建的核心技术要素。
                         </p>
-                        <a href="manus-context-engineering.html" class="read-more-btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transform hover:scale-105">
+                        <a href="manus-context-engineering.html" class="read-more-btn inline-flex items-center px-3 md:px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transform hover:scale-105 text-sm md:text-base">
                             阅读全文
-                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
                         </a>
