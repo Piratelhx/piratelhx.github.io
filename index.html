@@ -19,14 +19,24 @@
                 </a>
                 <nav class="hidden md:flex space-x-8">
                     <a href="#about" class="nav-link text-gray-800">关于我</a>
+                    <a href="cv.html" class="nav-link text-gray-800">个人简历</a>
                     <a href="aiproduct/index.html" class="nav-link text-gray-800">AI作品集</a>
                     <a href="blog/index.html" class="nav-link text-gray-800">博客</a>
                 </nav>
-                <button class="md:hidden focus:outline-none text-gray-800">
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-gray-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+                <div class="px-6 py-4 space-y-2">
+                    <a href="#about" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">关于我</a>
+                    <a href="cv.html" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">个人简历</a>
+                    <a href="aiproduct/index.html" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">AI作品集</a>
+                    <a href="blog/index.html" class="block py-2 text-gray-800 hover:text-blue-600 transition-colors">博客</a>
+                </div>
             </div>
         </div>
     </header>
@@ -109,7 +119,7 @@
         <!-- AI Portfolio Section -->
         <section id="ai-portfolio" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
+                <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-12">
                         <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">AI作品集</h2>
                         <p class="text-lg text-gray-600">探索AI时代的产品创新与实践</p>
@@ -128,12 +138,12 @@
                                     </div>
                                 </div>
                                 <p class="text-gray-700 mb-6 leading-relaxed">
-                                    一种全新的编程范式，让产品经理通过自然语言驱动AI实现产品开发，专注创意与目标，让AI处理技术细节。这是AI时代产品经理的提效新范式。
+                                    <strong>这份演示材料本身就是用AI制作的！</strong>运用AI Coding技术从零开始生成的专业汇报文稿，既是Vibe Coding理念的实践展示，也是对这一革命性编程范式的深度介绍。完美诠释了"用AI做AI的事"——让技术本身成为最好的技术说明书。
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">AI编程</span>
-                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-sm font-medium rounded-full">产品开发</span>
-                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">自然语言</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">智能汇报PPT</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">AI Coding</span>
+                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm font-medium rounded-full">效率提升</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <a href="aiproduct/vibecoding/vibe-coding-presentation.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
@@ -142,20 +152,47 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                         </svg>
                                     </a>
-                                    <span class="text-sm text-gray-500">2024年作品</span>
                                 </div>
                             </div>
                         </article>
                         
-                        <!-- Placeholder for future projects -->
-                        <article class="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 p-8 flex flex-col items-center justify-center text-center min-h-[400px]">
-                            <div class="bg-gray-200 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
+                        <!-- ChatDoc Project -->
+                        <article class="bg-white rounded-xl shadow-lg border border-gray-200 p-8 hover:shadow-xl transition-shadow duration-300 min-h-[400px]">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Vibe Coding原型</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">产品原型</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-600 mb-2">更多作品即将发布</h3>
-                            <p class="text-gray-500">持续探索AI产品的创新可能性</p>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">🤖 ChatDoc：Vibe Coding原型设计实践</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">采用Vibe Coding方式制作的产品原型，探索新的原型设计思路。通过自然语言驱动AI生成交互式原型，体现了Vibe Coding在产品原型设计方面的应用价值。</p>
+                            <div class="mb-6">
+                                <h4 class="font-semibold text-gray-800 mb-3">核心特点：</h4>
+                                <ul class="space-y-2 text-gray-600 text-sm">
+                                    <li class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        自然语言驱动的原型设计
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        交互式原型展示
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        快速迭代优化
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="aiproduct/chatdoc/chatdoc-new.html" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                                查看原型演示
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
                         </article>
                      </div>
                      <div class="text-center mt-12">
@@ -173,7 +210,7 @@
         <!-- Latest Posts Section -->
         <section class="py-20 bg-gray-50">
             <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
+                <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-12">
                         <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">最新文章</h2>
                         <p class="text-lg text-gray-600">分享我的思考与见解</p>
@@ -264,6 +301,21 @@
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // 移动端菜单切换
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 点击菜单项后关闭移动端菜单
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.add('hidden');
+            }
+        });
         
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

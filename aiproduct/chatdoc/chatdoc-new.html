@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型体验</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9; /* slate-100 */
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* slate-300 */
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* slate-400 */
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Dropdown transition */
+        .dropdown-enter {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+        }
+        .dropdown-enter-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+        .dropdown-leave {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .dropdown-leave-active {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            transition: opacity 150ms ease-in, transform 150ms ease-in;
+        }
+        /* Active nav link style */
+        .nav-link.active {
+            background-color: #e2e8f0; /* bg-slate-200 */
+            color: #3b82f6; /* text-blue-600 */
+        }
+        .nav-link.active svg {
+            color: #2563eb; /* text-blue-600 */
+        }
+        .line-clamp-1 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+        }
+        .line-clamp-2 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        .prose {
+             color: #334155;
+        }
+        .prose h2 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: 600;
+            color: #1e293b;
+            padding-top: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose p {
+            line-height: 1.75;
+            margin-top: 1.25em;
+            margin-bottom: 1.25em;
+        }
+         .prose code {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 2rem;
+        }
+        .prose li {
+            margin-top: 0.5rem;
+        }
+        .prompt-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .prompt-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+            border-color: #93c5fd; /* blue-300 */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="inline-flex items-center space-x-2 text-slate-600 hover:text-slate-900 transition-colors duration-200 group">
+                        <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        <span class="font-medium">返回作品集</span>
+                    </a>
+                    <div class="hidden sm:block w-px h-6 bg-slate-300"></div>
+                    <div class="hidden sm:block">
+                        <h1 class="text-lg font-semibold text-slate-800">ChatDoc 原型演示</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex h-screen bg-white/80 pt-16">
+
+        <!-- Left Sidebar -->
+        <aside class="hidden md:flex w-[280px] bg-slate-100/80 flex-col p-4 space-y-4 border-r border-slate-200/80">
+
+            <!-- Header -->
+            <div class="flex items-center space-x-3 p-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-md shadow-indigo-500/30">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-bold text-xl text-slate-700">大模型体验</span>
+            </div>
+
+            <!-- New Chat Button -->
+            <button id="nav-new-chat" class="nav-link w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white flex items-center justify-center space-x-2 py-3 rounded-lg shadow-lg shadow-blue-500/40 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                <span class="font-semibold">新对话</span>
+            </button>
+
+            <!-- Navigation -->
+            <nav class="flex-grow pt-2 space-y-1 custom-scrollbar overflow-y-auto">
+                <div class="space-y-1.5 p-1">
+                    <a href="#" id="nav-discovery" class="nav-link flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200 group">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-slate-500 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <span>发现广场</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="space-y-1.5 p-1">
+                    <a href="#" id="nav-knowledge-base" class="nav-link flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200 group">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-slate-500 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>我的智囊</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <button id="add-kb-button" title="添加知识库" class="text-slate-500 hover:text-blue-600 p-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            </button>
+                            <svg id="kb-arrow" class="w-4 h-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </a>
+                    <div id="knowledge-base-list" class="pl-4 pr-1 space-y-1">
+                        <div class="pt-2">
+                            <h3 class="px-2 mb-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">我创建的</h3>
+                            <a href="#" class="kb-list-item flex items-center space-x-3 px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200" data-kb="icbc-scan">
+                                <span class="w-5 h-5 rounded-md bg-green-100 text-green-600 flex items-center justify-center text-xs font-bold flex-shrink-0">W</span>
+                                <span class="truncate">数字员工接入指引文档</span>
+                            </a>
+                        </div>
+                        <div class="pt-2">
+                            <h3 class="px-2 mb-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">我加入的</h3>
+                            <a href="#" class="kb-list-item flex items-center space-x-3 px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200" data-kb="tech-finance">
+                                <span class="w-5 h-5 rounded-md bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold flex-shrink-0">科</span>
+                                <span class="truncate">科技金融</span>
+                            </a>
+                            <a href="#" class="kb-list-item flex items-center space-x-3 px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200" data-kb="ecom-analysis">
+                                <span class="w-5 h-5 rounded-md bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold flex-shrink-0">国</span>
+                                <span class="truncate">国家金融战略</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-1.5 p-1">
+                    <a href="#" id="nav-history" class="nav-link flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200 group">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-slate-500 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>问答历史</span>
+                        </div>
+                         <svg id="history-arrow" class="w-4 h-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <div id="history-list" class="pl-4 pr-1 space-y-1">
+                        <div class="pt-2">
+                            <h3 class="px-2 mb-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">今天</h3>
+                            <a href="#" class="history-item block truncate px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200">
+                                <span>Sora之后AI视频的拐点?</span>
+                            </a>
+                             <a href="#" class="history-item block truncate px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200">
+                                <span>介绍下什么是RegTech?</span>
+                            </a>
+                        </div>
+                        <div class="pt-2">
+                            <h3 class="px-2 mb-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">昨天</h3>
+                            <a href="#" class="history-item block truncate px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200/70 rounded-lg transition-colors duration-200">
+                                <span>个人养老金第三支柱投资策略</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Footer -->
+            <div class="mt-auto border-t border-slate-200/90 pt-4">
+                <a href="#" class="flex items-center space-x-3 p-2 text-sm hover:bg-slate-200/70 rounded-lg transition-colors duration-200 group">
+                    <img src="https://placehold.co/40x40/E2E8F0/475569?text=P" alt="用户头像" class="w-10 h-10 rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E2E8F0/475569?text=P';">
+                    <div>
+                        <p class="font-semibold text-slate-800">piratelin(林鸿鑫)</p>
+                        <p class="text-xs text-slate-500">基础科技产品部</p>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col relative overflow-y-auto">
+            <!-- Chat View -->
+            <div id="view-chat" class="flex-1 flex flex-col h-full">
+                <div class="flex-grow flex flex-col items-center justify-center">
+                    <div class="text-center p-4">
+                        <h1 class="text-5xl font-bold text-slate-800 mb-4">大模型体验</h1>
+                        <p class="text-slate-500 text-lg max-w-md mx-auto">我是行内大模型助手，您可以直接提问，我将即时响应，助力工作提效。</p>
+                    </div>
+                    <div class="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 px-4 mt-8">
+                        <div class="prompt-card bg-white/60 p-4 rounded-xl border border-slate-200/80 cursor-pointer">
+                            <h3 class="font-semibold text-slate-700">撰写邮件</h3>
+                            <p class="text-sm text-slate-500 mt-1">帮我给王经理写一封关于项目延期的邮件。</p>
+                        </div>
+                         <div class="prompt-card bg-white/60 p-4 rounded-xl border border-slate-200/80 cursor-pointer">
+                            <h3 class="font-semibold text-slate-700">分析数据</h3>
+                            <p class="text-sm text-slate-500 mt-1">分析一下这份销售报告，找出增长最快的产品。</p>
+                        </div>
+                         <div class="prompt-card bg-white/60 p-4 rounded-xl border border-slate-200/80 cursor-pointer">
+                            <h3 class="font-semibold text-slate-700">代码助手</h3>
+                            <p class="text-sm text-slate-500 mt-1">写一个Python函数，用于计算斐波那契数列。</p>
+                        </div>
+                         <div class="prompt-card bg-white/60 p-4 rounded-xl border border-slate-200/80 cursor-pointer">
+                            <h3 class="font-semibold text-slate-700">头脑风暴</h3>
+                            <p class="text-sm text-slate-500 mt-1">为我们的新产品想三个有创意的营销标语。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="px-4 pb-6 sm:px-8 sm:pb-8 w-full mt-auto">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="glassmorphism rounded-2xl shadow-2xl shadow-slate-500/10 p-4 border border-slate-200/80 transition-all focus-within:shadow-blue-500/20 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50">
+                            <div class="relative">
+                                <textarea id="chatInput" class="w-full h-16 pl-4 pr-20 text-base bg-transparent resize-none focus:outline-none placeholder:text-slate-400" placeholder="直接提问或@，触发更多技能"></textarea>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center space-x-2">
+                                    <!-- Model Selector Dropdown -->
+                                    <div class="relative" id="model-selector">
+                                        <button id="model-button" class="flex items-center space-x-1.5 bg-slate-200/70 px-3 py-1.5 text-sm font-medium text-slate-600 rounded-lg hover:bg-slate-300/70 transition-colors">
+                                            <span id="selected-model">DeepSeek R1</span>
+                                            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="model-dropdown" class="absolute bottom-full mb-2 w-full bg-white rounded-lg shadow-xl border border-slate-200/80 py-1 hidden dropdown-enter">
+                                            <a href="#" class="model-option block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">DeepSeek R1</a>
+                                            <a href="#" class="model-option block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Qwen</a>
+                                            <a href="#" class="model-option block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">混元</a>
+                                            <a href="#" class="model-option block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">商汤</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button class="text-slate-500 hover:text-blue-600 transition-colors">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                    </button>
+                                    <button id="sendButton" class="bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-xl hover:bg-blue-700 disabled:bg-slate-300 transition-all transform hover:scale-105 disabled:scale-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discovery View -->
+            <div id="view-discovery" class="hidden p-8 space-y-8 custom-scrollbar overflow-y-auto">
+                <header>
+                    <h1 class="text-3xl font-bold text-slate-800">发现广场</h1>
+                    <p class="text-slate-500 mt-1">探索由我们为您精选的行业知识, 与行业前沿保持同步。</p>
+                </header>
+
+                <!-- Hot Knowledge Bases -->
+                <section>
+                    <h2 class="text-xl font-semibold text-slate-700 mb-4">五大金融</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        <div class="kb-card bg-white p-5 rounded-xl shadow-md border border-slate-200/80 flex flex-col items-start space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer" data-kb="tech-finance">
+                            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5M19.5 8.25h-1.5m-15 3.75h1.5m15 0h1.5m-15 3.75h1.5m15 0h1.5M12 12l1.072 2.145a.75.75 0 11-1.344.672L12 12zm-1.072 2.145a.75.75 0 11-1.344-.672L12 12l-1.072-2.145a.75.75 0 111.344-.672L12 12l1.072-2.145a.75.75 0 111.344.672L12 12z" /></svg></div>
+                            <div class="flex-grow"><h3 class="font-semibold text-slate-800">科技金融</h3><p class="text-sm text-slate-500 mt-1 line-clamp-1">探索前沿技术在金融领域的应用。</p></div>
+                        </div>
+                        <div class="kb-card bg-white p-5 rounded-xl shadow-md border border-slate-200/80 flex flex-col items-start space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer" data-kb="green-finance">
+                            <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 01-9-9c0-4.968 4.032-9 9-9s9 4.032 9 9c0 4.968-4.032 9-9 9z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75v16.5M3.75 12h16.5" /></svg></div>
+                            <div class="flex-grow"><h3 class="font-semibold text-slate-800">绿色金融</h3><p class="text-sm text-slate-500 mt-1 line-clamp-1">助力可持续发展的金融解决方案。</p></div>
+                        </div>
+                        <div class="kb-card bg-white p-5 rounded-xl shadow-md border border-slate-200/80 flex flex-col items-start space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer" data-kb="inclusive-finance">
+                            <div class="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-orange-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 1.988 1.988 0 00-1.527-3.72M6 18.72A9.094 9.094 0 012.259 18.24a1.988 1.988 0 011.527-3.72M6 11.25a3.375 3.375 0 106.75 0 3.375 3.375 0 00-6.75 0zM12 15a8.962 8.962 0 01-3.375-6.75 8.962 8.962 0 013.375-6.75 8.962 8.962 0 013.375 6.75 8.962 8.962 0 01-3.375 6.75z" /></svg></div>
+                            <div class="flex-grow"><h3 class="font-semibold text-slate-800">普惠金融</h3><p class="text-sm text-slate-500 mt-1 line-clamp-1">让每个人享受公平的金融服务。</p></div>
+                        </div>
+                        <div class="kb-card bg-white p-5 rounded-xl shadow-md border border-slate-200/80 flex flex-col items-start space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer" data-kb="pension-finance">
+                            <div class="w-12 h-12 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-sky-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg></div>
+                            <div class="flex-grow"><h3 class="font-semibold text-slate-800">养老金融</h3><p class="text-sm text-slate-500 mt-1 line-clamp-1">规划您的金色晚年，安心无忧。</p></div>
+                        </div>
+                        <div class="kb-card bg-white p-5 rounded-xl shadow-md border border-slate-200/80 flex flex-col items-start space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer" data-kb="digital-finance">
+                            <div class="w-12 h-12 rounded-lg bg-slate-200 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-slate-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-2.25 3h5.25m-5.25 3h9M3.75 6.75h16.5v10.5h-16.5V6.75z" /></svg></div>
+                            <div class="flex-grow"><h3 class="font-semibold text-slate-800">数字金融</h3><p class="text-sm text-slate-500 mt-1 line-clamp-1">数字技术如何重塑金融未来。</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Latest Content -->
+                <section>
+                    <h2 class="text-xl font-semibold text-slate-700 mb-4">最新内容</h2>
+                    <div class="bg-white p-4 rounded-lg shadow-md border border-slate-200/80 divide-y divide-slate-200">
+                        <a href="#" class="flex justify-between items-center py-3 hover:bg-slate-50 -mx-4 px-4 rounded-md"><p class="text-slate-800">Sora之后, AI视频的下一个技术拐点在哪里?</p><span class="text-sm text-slate-400">2025-07-23</span></a>
+                        <a href="#" class="flex justify-between items-center py-3 hover:bg-slate-50 -mx-4 px-4 rounded-md"><p class="text-slate-800">人形机器人商业化元年: 从工厂走向家庭</p><span class="text-sm text-slate-400">2025-07-23</span></a>
+                        <a href="#" class="flex justify-between items-center py-3 hover:bg-slate-50 -mx-4 px-4 rounded-md"><p class="text-slate-800">深度解读: 半导体周期下的国产替代机遇</p><span class="text-sm text-slate-400">2025-07-22</span></a>
+                        <a href="#" class="flex justify-between items-center py-3 hover:bg-slate-50 -mx-4 px-4 rounded-md"><p class="text-slate-800">低空经济政策汇总与产业链分析</p><span class="text-sm text-slate-400">2025-07-21</span></a>
+                    </div>
+                </section>
+
+                <!-- Industry News -->
+                <section>
+                        <h2 class="text-xl font-semibold text-slate-700 mb-4">行业资讯</h2>
+                        <div class="flex items-center border-b border-slate-200 mb-4 overflow-x-auto">
+                            <button class="px-4 py-2 text-sm font-semibold text-blue-600 border-b-2 border-blue-600 flex-shrink-0">全部</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-blue-600 flex-shrink-0">人工智能</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-blue-600 flex-shrink-0">金融科技</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-blue-600 flex-shrink-0">稳定币</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-blue-600 flex-shrink-0">数字银行</button>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-white p-5 rounded-lg shadow-md border border-slate-200/80 flex space-x-6 hover:shadow-lg transition-shadow"><div class="w-20 h-20 rounded-lg bg-blue-500 text-white flex items-center justify-center text-4xl font-bold flex-shrink-0">AI</div><div><h3 class="font-semibold text-lg text-slate-800 mb-1">大模型驱动的科学计算新范式</h3><p class="text-sm text-slate-600 mb-2 line-clamp-2">本文探讨了大型语言模型(LLMs)如何加速材料科学、药物发现等领域的模拟与计算过程...</p><p class="text-xs text-slate-400">来源: 量子位, 2025-07-22</p></div></div>
+                            <div class="bg-white p-5 rounded-lg shadow-md border border-slate-200/80 flex space-x-6 hover:shadow-lg transition-shadow"><div class="w-20 h-20 rounded-lg bg-green-500 text-white flex items-center justify-center text-4xl font-bold flex-shrink-0">EV</div><div><h3 class="font-semibold text-lg text-slate-800 mb-1">2025上半年全球新能源汽车市场渗透率分析报告</h3><p class="text-sm text-slate-600 mb-2 line-clamp-2">报告显示, 欧洲市场增速放缓, 而东南亚市场成为新的增长点。中国品牌在电池技术和智能化方面...</p><p class="text-xs text-slate-400">来源: 36氪, 2025-07-20</p></div></div>
+                        </div>
+                </section>
+            </div>
+            
+            <!-- Knowledge Base Detail View -->
+            <div id="view-knowledge-base-detail" class="hidden flex-1 flex h-full">
+                <!-- Left panel with article list -->
+                <aside id="kb-detail-sidebar" class="hidden md:flex w-[320px] bg-white flex-col p-4 border-r border-slate-200/80">
+                    <!-- Header will be populated by JS -->
+                    <div id="kb-detail-header" class="flex items-start space-x-4 p-2 mb-2">
+                        <!-- Content populated by JS -->
+                    </div>
+                    <div id="kb-join-button-container">
+                        <!-- Button dynamically inserted here -->
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-4 mt-2">
+                         <div class="flex items-center justify-between px-2 mb-2">
+                            <h3 class="text-sm font-semibold text-slate-800">内容</h3>
+                            <button title="上传文件" class="p-1 text-slate-500 hover:text-blue-600 rounded-md">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Article List will be populated by JS -->
+                        <div id="kb-detail-list-container" class="flex-grow space-y-1 custom-scrollbar overflow-y-auto pr-2">
+                            <!-- Content populated by JS -->
+                        </div>
+                    </div>
+                </aside>
+                <!-- Right panel with chat interface -->
+                <main id="kb-detail-main" class="flex-1 flex flex-col bg-slate-50">
+                    <!-- Article Content View (New) -->
+                    <div id="kb-article-content-view" class="hidden flex-1 bg-white">
+                        <!-- Fabricated article content will be injected here by JS -->
+                    </div>
+
+                    <!-- Chat Welcome View -->
+                    <div id="kb-chat-welcome-view" class="flex-1 flex flex-col items-center justify-center text-center p-4">
+                        <div id="kb-chat-logo" class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-4">
+                            <!-- Icon will be set by JS -->
+                        </div>
+                        <h2 id="kb-chat-title" class="text-3xl font-bold text-slate-800 mb-2"></h2>
+                        <p class="text-slate-500 text-base max-w-md mb-6">Hi, 有任何关于这个知识库的问题, 都尽管问我!</p>
+                        <div id="kb-chat-prompts" class="w-full max-w-2xl space-y-3">
+                           <!-- Prompts will be populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Input Area -->
+                    <div class="px-4 pb-6 sm:px-8 sm:pb-8 mt-auto bg-slate-50">
+                        <div class="max-w-4xl mx-auto">
+                            <div class="bg-white rounded-2xl shadow-2xl shadow-slate-500/10 p-4 border border-slate-200/80 transition-all focus-within:shadow-blue-500/20 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50">
+                                <div class="relative">
+                                    <textarea id="kbChatInput" class="w-full h-16 pl-4 pr-20 text-base bg-transparent resize-none focus:outline-none placeholder:text-slate-400"></textarea>
+                                </div>
+                                <div class="flex items-center justify-between mt-2">
+                                    <div class="flex items-center space-x-2">
+                                        <!-- Model Selector Dropdown -->
+                                        <div class="relative" id="kb-model-selector">
+                                            <button id="kb-model-button" class="flex items-center space-x-1.5 bg-slate-200/70 px-3 py-1.5 text-sm font-medium text-slate-600 rounded-lg hover:bg-slate-300/70 transition-colors">
+                                                <span id="kb-selected-model">DeepSeek R1</span>
+                                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <button class="text-slate-500 hover:text-blue-600 transition-colors">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                        </button>
+                                        <button id="kbSendButton" class="bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-xl hover:bg-blue-700 disabled:bg-slate-300 transition-all transform hover:scale-105 disabled:scale-100">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </main>
+
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Mock Data for Knowledge Bases ---
+        const knowledgeBaseData = {
+            'icbc-scan': {
+                title: '数字员工接入指引',
+                author: '基础科技产品部',
+                contentCount: 5,
+                description: '为业务方提供标准化的数字员工（RPA）能力接入流程与技术规范。',
+                icon: `<svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>`,
+                chatPrompts: ['数字员工的API密钥如何申请？', '接入RPA流程需要哪些前置条件？', '如何处理回调通知的签名验证？'],
+                articles: [
+                    { icon: '📄', title: '数字员工接入指引文档', date: '07/31' },
+                    { icon: '🔑', title: 'API密钥申请与管理', date: '07/30' },
+                    { icon: '⚙️', title: 'RPA流程配置详解', date: '07/29' },
+                    { icon: '🔔', title: '回调通知服务说明', date: '07/28' },
+                ]
+            },
+            'tech-finance': {
+                title: '科技金融',
+                description: '探索前沿技术在金融领域的应用，涵盖AI、区块链、大数据等。',
+                author: '金融科技研究组',
+                contentCount: 32,
+                icon: `<svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5M19.5 8.25h-1.5m-15 3.75h1.5m15 0h1.5m-15 3.75h1.5m15 0h1.5M12 12l1.072 2.145a.75.75 0 11-1.344.672L12 12zm-1.072 2.145a.75.75 0 11-1.344-.672L12 12l-1.072-2.145a.75.75 0 111.344-.672L12 12l1.072-2.145a.75.75 0 111.344.672L12 12z" /></svg>`,
+                chatPrompts: ['介绍下什么是RegTech?', '区块链如何改变供应链金融？', 'AI在量化交易中的应用实例有哪些？'],
+                articles: [
+                    { icon: '📂', title: '区块链在供应链金融中的应用', date: '07/30' },
+                    { icon: '📈', title: 'AI驱动的量化交易策略', date: '07/28' },
+                    { icon: '⚖️', title: 'RegTech（监管科技）的未来趋势', date: '07/25' },
+                    { icon: '🤖', title: '智能投顾的算法解析', date: '07/22' },
+                    { icon: '📄', title: '金融科技创新企业案例分析', date: '07/20' },
+                ]
+            },
+            'green-finance': {
+                title: '绿色金融',
+                description: '探索金融如何助力可持续发展与环境保护。',
+                author: 'Eco Capital',
+                contentCount: 158,
+                icon: `<svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 01-9-9c0-4.968 4.032-9 9-9s9 4.032 9 9c0 4.968-4.032 9-9 9z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75v16.5M3.75 12h16.5" /></svg>`,
+                chatPrompts: ['什么是绿色债券？', 'ESG评级如何影响企业投资？', '介绍一个新能源项目融资的成功案例。'],
+                articles: [
+                    { icon: '📄', title: '碳中和目标下的绿色债券市场分析', date: '07/29' },
+                    { icon: '🌿', title: 'ESG投资策略与风险管理', date: '07/27' },
+                    { icon: '☀️', title: '新能源项目融资模式探讨', date: '07/26' },
+                    { icon: '🌊', title: '蓝色金融：海洋经济的可持续融资', date: '07/24' },
+                    { icon: '♻️', title: '循环经济中的金融创新', date: '07/21' },
+                ]
+            },
+            'inclusive-finance': {
+                title: '普惠金融',
+                description: '致力于让每个人都能享受到公平的金融服务。',
+                author: 'Finance For All',
+                contentCount: 340,
+                icon: `<svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 1.988 1.988 0 00-1.527-3.72M6 18.72A9.094 9.094 0 012.259 18.24a1.988 1.988 0 011.527-3.72M6 11.25a3.375 3.375 0 106.75 0 3.375 3.375 0 00-6.75 0zM12 15a8.962 8.962 0 01-3.375-6.75 8.962 8.962 0 013.375-6.75 8.962 8.962 0 013.375 6.75 8.962 8.962 0 01-3.375 6.75z" /></svg>`,
+                chatPrompts: ['小微企业贷款难的症结在哪？', '移动支付如何赋能普惠金融？', '数字技术怎样帮助农村地区获得金融服务？'],
+                articles: [
+                    { icon: '💼', title: '小微企业数字信贷产品设计', date: '07/31' },
+                    { icon: '🌾', title: '农村金融服务的最后一公里', date: '07/29' },
+                    { icon: '📱', title: '移动支付如何赋能普惠金融', date: '07/28' },
+                    { icon: '🤝', title: '社会影响力债券（SIB）案例研究', date: '07/23' },
+                ]
+            },
+            'pension-finance': {
+                title: '养老金融',
+                description: '规划您的金色晚年，提供全面的养老金融解决方案。',
+                author: 'AgeWell Finance',
+                contentCount: 98,
+                icon: `<svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>`,
+                chatPrompts: ['个人养老金第三支柱如何投资？', '什么是“以房养老”？', '分析一下养老社区的REITs模式。'],
+                articles: [
+                    { icon: '💰', title: '个人养老金账户（第三支柱）投资指南', date: '07/30' },
+                    { icon: '👵', title: '“银发经济”下的金融产品创新', date: '07/28' },
+                    { icon: '🏥', title: '长期护理保险（长护险）详解', date: '07/25' },
+                    { icon: '🏠', title: '养老社区的REITs模式分析', date: '07/22' },
+                ]
+            },
+            'digital-finance': {
+                title: '数字金融',
+                description: '探索数字技术如何重塑金融行业的未来。',
+                author: 'DigitalFin Hub',
+                contentCount: 412,
+                icon: `<svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-2.25 3h5.25m-5.25 3h9M3.75 6.75h16.5v10.5h-16.5V6.75z" /></svg>`,
+                chatPrompts: ['开放银行的API安全吗？', '数字人民币（e-CNY）的应用场景有哪些？', '什么是DeFi（去中心化金融）？'],
+                articles: [
+                    { icon: '🏦', title: '开放银行（Open Banking）的全球实践', date: '07/31' },
+                    { icon: '�', title: '数字人民币（e-CNY）的应用场景探索', date: '07/30' },
+                    { icon: '🔒', title: '金融数据安全与隐私计算', date: '07/29' },
+                    { icon: '🔗', title: 'DeFi（去中心化金融）入门与风险', date: '07/26' },
+                ]
+            }
+        };
+        
+        const articleContentData = {
+            '数字员工接入指引文档': `
+                <h1 class="text-3xl font-bold text-slate-900 mb-2">数字员工接入指引文档</h1>
+                <p class="text-sm text-slate-500 mb-8 border-b border-slate-200 pb-4">版本: 1.0 | 更新于: 2025-07-31</p>
+                <div class="prose max-w-none">
+                    <p>欢迎使用数字员工（RPA）平台。本篇文档将引导您完成从申请到正式接入的全过程，帮助您的业务系统快速集成自动化处理能力。</p>
+                    <h2>1. 接入前准备</h2>
+                    <p>在开始接入前，请确保您已完成以下准备工作：</p>
+                    <ul>
+                        <li>明确需要自动化的业务场景和具体流程。</li>
+                        <li>准备好用于接收任务状态回调的公网可访问的API接口。</li>
+                        <li>指定项目技术负责人，负责与平台进行技术对接。</li>
+                    </ul>
+                    <h2>2. 申请与审批</h2>
+                    <p>通过内部OA系统提交“数字员工接入申请”，在表单中详细描述您的业务需求、预期调用量以及技术负责人信息。审批通过后，系统将为您创建应用并分配唯一的 <code>App ID</code> 和 <code>App Secret</code>。</p>
+                    <h2>3. API接口说明</h2>
+                    <p>平台提供RESTful API用于任务的创建和查询。所有API请求均需在请求头中携带认证信息。</p>
+                    <h3>3.1 认证机制</h3>
+                    <p>采用基于HMAC-SHA256的签名机制。您需要将请求参数按字典序排序，拼接成字符串，然后使用您的 <code>App Secret</code> 作为密钥进行签名，并将签名结果放入 <code>X-Signature</code> 请求头中。</p>
+                    <h3>3.2 创建任务接口</h3>
+                    <p>通过调用 <code>POST /api/v1/tasks</code> 接口来创建一个新的RPA任务。请求体中需要包含流程ID（<code>flow_id</code>）和业务参数（<code>params</code>）。</p>
+                    <h2>4. 状态回调通知</h2>
+                    <p>当任务状态发生变更时（如：开始、成功、失败），平台会向您在申请时配置的回调地址发送HTTP POST请求。您的服务器需要正确处理这些请求，并返回状态码 <code>200 OK</code> 作为响应。</p>
+                    <p>为确保安全，回调请求同样包含签名，请务必进行验签操作。</p>
+                </div>
+            `,
+            'Sora之后, AI视频的下一个技术拐点在哪里?': `
+                 <h1 class="text-3xl font-bold text-slate-900 mb-2">Sora之后, AI视频的下一个技术拐点在哪里?</h1>
+                 <p class="text-sm text-slate-500 mb-8 border-b border-slate-200 pb-4">发布于: 2025-07-31 | 作者: AI行业分析师</p>
+                 <div class="prose max-w-none">
+                     <p>在OpenAI发布Sora模型之后，AI视频生成领域的技术竞赛进入了白热化阶段。Sora以其惊人的生成质量、时长和对物理世界的理解，为我们揭示了通往通用世界模型的一条可能路径。然而，技术的浪潮永不停歇。当行业逐渐消化Sora带来的震撼后，新的问题浮出水面：Sora之后，AI视频的下一个技术拐点在哪里？</p>
+                     <h2>拐点一：从“生成”到“可控”的精细化编辑</h2>
+                     <p>当前的AI视频模型在“一次性生成”方面表现出色，但对于用户来说，更重要的是对生成内容的精细化控制和后期编辑能力。想象一下，你不仅可以生成一段“猫在键盘上跳舞”的视频，还可以精确地修改猫的颜色、舞步的节奏，甚至替换背景音乐而保持视频内容同步。这要求模型不仅理解文本提示，还要能理解更复杂的编辑指令，如“让这只猫跳得再欢快一点”或“在第3秒时，让它向左看”。这涉及到时间轴编辑、对象遮罩、风格迁移等多种技术的深度融合。</p>
+                     <h2>拐点二：实时交互与长时程叙事</h2>
+                     <p>下一个突破可能是实时视频生成与交互。用户不再是等待模型渲染结果，而是可以像玩游戏一样，实时地与生成的世界互动，动态地改变故事走向。这对于游戏、虚拟现实（VR）和元宇宙等领域将是革命性的。此外，生成具有连贯逻辑和情感发展的长时程视频（例如一部微电影或动画剧集）也是一个巨大的挑战。这需要模型具备更强的记忆能力、因果推理能力和对叙事结构的理解，确保角色和情节在长时间跨度内保持一致性。</p>
+                     <h2>拐点三：多模态融合与物理世界模拟</h2>
+                     <p>未来的视频生成模型将不仅仅是文本到视频（Text-to-Video），而是任意模态到视频（Any-to-Video）。用户可以用声音哼唱一段旋律，模型就能生成与之匹配的MV；或者输入一张图片，模型能推演出这张图片发生前后的故事。更进一步，模型将深化对物理世界的模拟，不仅仅是视觉上的逼真，更包括对物理规律（如重力、流体、光影）的精确模拟，这将为科学计算、工程仿真和自动驾驶测试等领域开辟全新的可能性。</p>
+                     <p>总而言之，Sora为我们打开了一扇窗，窗外的风景壮丽而广阔。从精细化可控编辑，到实时交互叙事，再到深度多模态融合，AI视频的未来充满了无限可能。我们正处在一个技术大爆发的前夜，下一个拐点，或许就在不远的明天。</p>
+                 </div>
+            `
+        };
+
+
+        // --- View Switching Logic ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const kbCards = document.querySelectorAll('.kb-card');
+        const kbListItems = document.querySelectorAll('.kb-list-item');
+        const views = {
+            'nav-new-chat': document.getElementById('view-chat'),
+            'nav-discovery': document.getElementById('view-discovery'),
+            'view-knowledge-base-detail': document.getElementById('view-knowledge-base-detail'),
+        };
+
+        function switchView(targetId) {
+            Object.values(views).forEach(view => view && (view.style.display = 'none'));
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const targetView = views[targetId];
+            if (targetView) {
+                targetView.style.display = (targetId === 'view-knowledge-base-detail') ? 'flex' : 'block';
+                 if (targetId === 'nav-new-chat') {
+                     targetView.style.display = 'flex';
+                 }
+            }
+
+            const activeLink = document.getElementById(targetId);
+            if (activeLink && activeLink.id !== 'nav-new-chat') {
+                activeLink.classList.add('active');
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.currentTarget.id;
+                if (views[targetId] && !link.classList.contains('collapsible-trigger')) {
+                    switchView(targetId);
+                }
+            });
+        });
+
+        // --- Knowledge Base Detail View Logic ---
+        const kbDetailHeader = document.getElementById('kb-detail-header');
+        const kbDetailListContainer = document.getElementById('kb-detail-list-container');
+        const kbChatInput = document.getElementById('kbChatInput');
+        
+        const kbChatWelcomeView = document.getElementById('kb-chat-welcome-view');
+        const kbArticleContentView = document.getElementById('kb-article-content-view');
+        const kbJoinButtonContainer = document.getElementById('kb-join-button-container');
+
+        function showArticleContent(articleTitle) {
+            kbChatWelcomeView.style.display = 'none';
+            kbArticleContentView.style.display = 'block';
+            
+            const content = articleContentData[articleTitle] || `<div class="p-8"><h1 class="text-2xl font-bold">${articleTitle}</h1><p class="mt-4 text-slate-500">此文档内容正在撰写中...</p></div>`;
+
+            kbArticleContentView.innerHTML = `
+                <div class="p-8 custom-scrollbar overflow-y-auto h-full">
+                    <button id="back-to-kb-chat" class="mb-6 text-sm text-blue-600 hover:underline flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        <span>返回知识库对话</span>
+                    </button>
+                    ${content}
+                </div>
+            `;
+            
+            document.getElementById('back-to-kb-chat').addEventListener('click', () => {
+                kbArticleContentView.style.display = 'none';
+                kbChatWelcomeView.style.display = 'flex';
+                document.querySelectorAll('.kb-article-link').forEach(l => l.classList.remove('bg-slate-200/70', 'font-semibold'));
+            });
+        }
+
+        function populateKbDetailView(kbId) {
+            const data = knowledgeBaseData[kbId];
+            if (!data) return;
+
+            kbChatWelcomeView.style.display = 'flex';
+            kbArticleContentView.style.display = 'none';
+            
+            kbJoinButtonContainer.innerHTML = ''; // Clear previous button
+
+            kbDetailHeader.innerHTML = `
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">${data.icon.replace('w-8 h-8', 'w-6 h-6')}</div>
+                <div class="flex-grow">
+                    <h2 class="font-bold text-base text-slate-800">${data.title}</h2>
+                    <p class="text-xs text-slate-500">由 ${data.author} 创建 | ${data.contentCount}+ 内容</p>
+                    <p class="text-sm text-slate-600 mt-2">${data.description}</p>
+                </div>
+            `;
+
+            kbDetailListContainer.innerHTML = data.articles.map(article => `
+                <a href="#" class="kb-article-link flex items-center space-x-3 p-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors duration-200 group" data-title="${article.title}">
+                    <span class="text-lg">${article.icon}</span>
+                    <div class="flex-grow">
+                        <p class="text-slate-800 group-hover:text-blue-600">${article.title}</p>
+                        <p class="text-xs text-slate-400">${article.date}</p>
+                    </div>
+                </a>
+            `).join('');
+
+            document.querySelectorAll('.kb-article-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.kb-article-link').forEach(l => l.classList.remove('bg-slate-200/70', 'font-semibold'));
+                    link.classList.add('bg-slate-200/70', 'font-semibold');
+                    const articleTitle = link.dataset.title;
+                    showArticleContent(articleTitle);
+                });
+            });
+
+            const kbChatLogo = kbChatWelcomeView.querySelector('#kb-chat-logo');
+            const kbChatTitle = kbChatWelcomeView.querySelector('#kb-chat-title');
+            const kbChatPrompts = kbChatWelcomeView.querySelector('#kb-chat-prompts');
+            
+            kbChatLogo.innerHTML = data.icon;
+            kbChatTitle.textContent = data.title;
+            kbChatPrompts.innerHTML = data.chatPrompts.map(prompt => `
+                <button class="w-full text-left bg-white hover:bg-slate-100/70 p-3 rounded-lg transition-colors text-sm text-slate-700 flex justify-between items-center border border-slate-200">
+                    <span>${prompt}</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            `).join('');
+            kbChatInput.placeholder = `基于 ${data.title} 提问`;
+        }
+
+        kbCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const kbId = card.dataset.kb;
+                populateKbDetailView(kbId); 
+                switchView('view-knowledge-base-detail');
+            });
+        });
+
+        kbListItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                kbListItems.forEach(i => i.classList.remove('bg-slate-200/70'));
+                item.classList.add('bg-slate-200/70');
+                const kbId = item.dataset.kb;
+                populateKbDetailView(kbId); 
+                switchView('view-knowledge-base-detail');
+            });
+        });
+        
+        // --- Collapsible Sidebar Sections ---
+        function setupCollapsible(triggerId, listId, arrowId, startExpanded = false) {
+            const trigger = document.getElementById(triggerId);
+            const list = document.getElementById(listId);
+            const arrow = document.getElementById(arrowId);
+            if (!trigger || !list || !arrow) return;
+            
+            trigger.classList.add('collapsible-trigger');
+
+            const toggleCollapse = () => {
+                list.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            };
+
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Check if the click is on the add button
+                if (e.target.closest('#add-kb-button')) {
+                    return;
+                }
+                toggleCollapse();
+            });
+
+            if (startExpanded) {
+                 arrow.classList.add('rotate-180');
+                 list.classList.remove('hidden');
+            } else {
+                list.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
+        setupCollapsible('nav-knowledge-base', 'knowledge-base-list', 'kb-arrow', true);
+        setupCollapsible('nav-history', 'history-list', 'history-arrow', true);
+        
+        const addKbButton = document.getElementById('add-kb-button');
+        if(addKbButton) {
+            addKbButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Add new knowledge base clicked');
+                // This is where you would trigger a modal or other UI to add a knowledge base.
+            });
+        }
+
+
+        // Set initial view
+        switchView('nav-new-chat');
+
+        // --- Model Selector Dropdown Logic ---
+        const modelSelector = document.getElementById('model-selector');
+        if (modelSelector) {
+            const modelButton = modelSelector.querySelector('button');
+            const modelDropdown = modelSelector.querySelector('div');
+            const selectedModelSpan = modelSelector.querySelector('span');
+            const modelOptions = modelSelector.querySelectorAll('a');
+
+            const toggleDropdown = (show) => {
+                const isHidden = modelDropdown.classList.contains('hidden');
+                if (show === true || (show === undefined && isHidden)) {
+                    modelDropdown.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        modelDropdown.classList.remove('dropdown-leave', 'dropdown-leave-active');
+                        modelDropdown.classList.add('dropdown-enter', 'dropdown-enter-active');
+                    });
+                } else if (show === false || (show === undefined && !isHidden)) {
+                    modelDropdown.classList.remove('dropdown-enter', 'dropdown-enter-active');
+                    modelDropdown.classList.add('dropdown-leave', 'dropdown-leave-active');
+                    modelDropdown.addEventListener('transitionend', () => modelDropdown.classList.add('hidden'), { once: true });
+                }
+            };
+            
+            modelButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown();
+            });
+
+            modelOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    selectedModelSpan.textContent = e.target.textContent;
+                    toggleDropdown(false);
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!modelSelector.contains(e.target) && !modelDropdown.classList.contains('hidden')) {
+                    toggleDropdown(false);
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>

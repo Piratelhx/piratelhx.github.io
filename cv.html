@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - 昨夜西风</title>
+    <meta name="description" content="昨夜西风的个人简历，包含教育经历、工作经历等信息">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-black">
+                    昨夜西风
+                </a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html#about" class="nav-link text-gray-800">关于我</a>
+                    <a href="cv.html" class="nav-link text-blue-600 font-semibold">个人简历</a>
+                    <a href="aiproduct/index.html" class="nav-link text-gray-800">AI作品集</a>
+                    <a href="blog/index.html" class="nav-link text-gray-800">博客</a>
+                </nav>
+                <button class="md:hidden focus:outline-none text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">个人简历</h1>
+            <p class="text-lg text-gray-600">AI产品经理 | 技术爱好者 | 写作者</p>
+        </div>
+
+        <!-- Education Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">教育经历</h2>
+            
+            <!-- Master's Degree -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">中山大学 - 计算机科学与技术硕士</h3>
+                        <p class="text-gray-600 mt-1">GPA: 4.0/5.0 (Top 5%)</p>
+                        <p class="text-gray-600">荣誉: 国家奖学金, 校级一等奖学金</p>
+                    </div>
+                    <span class="text-gray-500 font-medium">2018.09 - 2021.06</span>
+                </div>
+            </div>
+
+            <!-- Bachelor's Degree -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">中山大学 - 计算机科学与技术本科</h3>
+                        <p class="text-gray-600 mt-1">GPA: 4.1/5.0 (Top 5%)</p>
+                        <p class="text-gray-600">荣誉: 国家奖学金, 校级一等奖学金</p>
+                    </div>
+                    <span class="text-gray-500 font-medium">2014.09 - 2018.06</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">工作经历</h2>
+            
+            <!-- Current Job -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">深圳前海微众银行股份有限公司</h3>
+                        <p class="text-blue-600 font-medium mt-1">AI产品经理 - 基础科技产品部</p>
+                    </div>
+                    <span class="text-gray-500 font-medium">2024.03 - 至今</span>
+                </div>
+                <p class="text-gray-700 leading-relaxed">
+                    负责AI与办公相关的大模型的落地项目。
+                </p>
+            </div>
+
+            <!-- Previous Job -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">深圳市腾讯计算机系统有限公司</h3>
+                        <p class="text-blue-600 font-medium mt-1">AI产品经理 - 天美工作室</p>
+                    </div>
+                    <span class="text-gray-500 font-medium">2021.06 - 2024.03</span>
+                </div>
+                <p class="text-gray-700 leading-relaxed">
+                    负责AI与游戏结合的落地。
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">核心技能</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">产品管理</h4>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• AI产品规划与设计</li>
+                            <li>• 用户需求分析</li>
+                            <li>• 产品数据分析</li>
+                            <li>• 跨团队协作</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">技术能力</h4>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• 机器学习/深度学习</li>
+                            <li>• 大模型应用开发</li>
+                            <li>• Python</li>
+                            <li>• AI Coding实践</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">联系方式</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">在线作品</h4>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><a href="aiproduct/index.html" class="text-blue-600 hover:underline">• AI作品集</a></li>
+                            <li><a href="blog/index.html" class="text-blue-600 hover:underline">• 技术博客</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">专业领域</h4>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• AI产品设计</li>
+                            <li>• 大模型应用</li>
+                            <li>• 技术写作</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 昨夜西风. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
