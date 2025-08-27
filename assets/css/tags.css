@@ -1,0 +1,116 @@
+/* Tags page styles */
+.tags-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tags-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.tag-cloud {
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tag-item {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #f1f3f5;
+  color: #495057;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid #dee2e6;
+}
+
+.tag-item:hover {
+  background-color: #4c6ef5;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 110, 245, 0.3);
+}
+
+.tag-section {
+  margin-bottom: 2.5rem;
+}
+
+.tag-section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #4c6ef5;
+  display: inline-block;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-list-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.post-list-item:hover {
+  transform: translateX(5px);
+  border-left-color: #4c6ef5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.post-link {
+  color: #343a40;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.post-link:hover {
+  color: #4c6ef5;
+}
+
+.post-date {
+  color: #868e96;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+/* Post page tag styles */
+.post-tags {
+  margin: 1.5rem 0;
+}
+
+.post-tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #e7f5ff;
+  color: #1c7ed6;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.post-tag:hover {
+  background-color: #1c7ed6;
+  color: white;
+  text-decoration: none;
+}
