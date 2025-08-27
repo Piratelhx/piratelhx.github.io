@@ -5,117 +5,233 @@ permalink: /tags/
 ---
 
 <style>
-.tag-cloud {
-  margin: 2rem 0;
-  text-align: center;
+/* 全局样式重置 */
+.tags-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-.tag-item {
-  display: inline-block;
-  margin: 0.3rem;
-  padding: 0.4rem 0.8rem;
+/* 标题样式 */
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 3rem;
+}
+
+/* Tag云样式 - 3D效果 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.tag-bubble {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   text-decoration: none;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  overflow: hidden;
 }
 
-.tag-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+.tag-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.tag-bubble:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
   text-decoration: none;
   color: white;
 }
 
-.tag-section {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 10px;
-  border-left: 4px solid #667eea;
+.tag-bubble:hover::before {
+  left: 100%;
 }
 
-.tag-title {
-  color: #333;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+.tag-count {
+  background: rgba(255,255,255,0.3);
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+
+/* 分类卡片样式 */
+.tags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.tag-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e1e8ed;
+  position: relative;
+  overflow: hidden;
+}
+
+.tag-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.tag-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.tag-card-title {
   display: flex;
   align-items: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
 }
 
-.tag-title::before {
-  content: "🏷️";
-  margin-right: 0.5rem;
+.tag-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  font-size: 1.2rem;
 }
 
-.tag-posts {
+.tag-posts-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.tag-posts li {
+.tag-post-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
   margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 5px;
-  border-left: 3px solid #667eea;
-  transition: all 0.2s ease;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
 }
 
-.tag-posts li:hover {
-  transform: translateX(5px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.tag-post-item:hover {
+  background: #e3f2fd;
+  border-left-color: #667eea;
+  transform: translateX(10px);
 }
 
-.tag-posts a {
-  color: #333;
+.tag-post-item a {
+  color: #2c3e50;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  flex: 1;
 }
 
-.tag-posts a:hover {
+.tag-post-item a:hover {
   color: #667eea;
 }
 
-.post-count {
-  background: #667eea;
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
+.post-date {
+  color: #7f8c8d;
+  font-size: 0.85rem;
+  background: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid #e1e8ed;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .tags-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tag-cloud {
+    padding: 1rem;
+  }
+  
+  .tag-bubble {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 </style>
 
-# 📚 文章标签
-
-<div class="tag-cloud">
-{% assign sorted_tags = site.tags | sort %}
-{% for tag in sorted_tags %}
-  <a href="#{{ tag[0] | slugify }}" class="tag-item">
-    {{ tag[0] }} <span class="post-count">{{ tag[1].size }}</span>
-  </a>
-{% endfor %}
-</div>
-
----
-
-{% assign sorted_tags = site.tags | sort %}
-{% for tag in sorted_tags %}
-<div class="tag-section" id="{{ tag[0] | slugify }}">
-  <h3 class="tag-title">{{ tag[0] }}</h3>
-  <ul class="tag-posts">
-    {% assign sorted_posts = tag[1] | sort: 'date' | reverse %}
-    {% for post in sorted_posts %}
-      <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <small style="color: #666; margin-left: 0.5rem;">{{ post.date | date: "%Y-%m-%d" }}</small>
-      </li>
+<div class="tags-container">
+  <h1 class="page-title">🏷️ 文章标签</h1>
+  
+  <!-- Tag云 -->
+  <div class="tag-cloud">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+      <a href="#{{ tag[0] | slugify }}" class="tag-bubble">
+        {{ tag[0] }}
+        <span class="tag-count">{{ tag[1].size }}</span>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
+  
+  <!-- 分类卡片 -->
+  <div class="tags-grid">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+    <div class="tag-card" id="{{ tag[0] | slugify }}">
+      <h3 class="tag-card-title">
+        <div class="tag-icon">🏷️</div>
+        {{ tag[0] }}
+      </h3>
+      <ul class="tag-posts-list">
+        {% assign sorted_posts = tag[1] | sort: 'date' | reverse %}
+        {% for post in sorted_posts %}
+        <li class="tag-post-item">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          <span class="post-date">{{ post.date | date: "%m-%d" }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
 </div>
-{% endfor %}
