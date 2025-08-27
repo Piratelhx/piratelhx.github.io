@@ -28,9 +28,8 @@ social:
   links:
     - https://github.com/piratelhx
 
-# 启用 Tale 主题
-#theme: tale
-remote_theme: chesterhow/tale 
+# 移除 remote_theme
+# remote_theme: chesterhow/tale 
 
 # 插件列表
 plugins:

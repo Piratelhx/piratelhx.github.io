@@ -1,10 +1,8 @@
 ---
-layout: page
+layout: default
 title: 标签
 permalink: /tags/
 ---
-
-<link rel="stylesheet" href="{{ '/assets/css/tags.css' | relative_url }}">
 
 <div class="tags-container">
   <header class="tags-header">
@@ -25,15 +23,15 @@ permalink: /tags/
 
   <main class="posts-grid">
     {% for post in site.posts %}
-      <article class="post-card" data-tags="{% for tag in post.tags %}{{ tag | slugify }} {% endfor %}">
+      <a class="post-card" href="{{ post.url | relative_url }}" data-tags="{% for tag in post.tags %}{{ tag | slugify }} {% endfor %}">
         <p class="post-card-date">{{ post.date | date: "%Y-%m-%d" }}</p>
-        <a href="{{ post.url | relative_url }}" class="post-card-title">{{ post.title }}</a>
+        <h3 class="post-card-title">{{ post.title }}</h3>
         <div class="post-card-tags">
           {% for tag in post.tags %}
-            <a href="#" class="post-card-tag">{{ tag }}</a>
+            <span class="post-card-tag">{{ tag }}</span>
           {% endfor %}
         </div>
-      </article>
+      </a>
     {% endfor %}
   </main>
 </div>
@@ -44,14 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const postCards = document.querySelectorAll('.post-card');
 
     filterButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Update active button
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
             const selectedTag = this.getAttribute('data-tag');
 
-            // Filter posts
             postCards.forEach(card => {
                 const postTags = card.getAttribute('data-tags');
                 if (selectedTag === 'all' || postTags.includes(selectedTag)) {

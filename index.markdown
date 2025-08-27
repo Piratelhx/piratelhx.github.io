@@ -1,47 +1,25 @@
 ---
 layout: default
+title: Home
 ---
 
-<div class="catalogue">
+<ul class="post-list">
   {% for post in site.posts %}
-    <a href="{{ post.url | prepend: site.baseurl }}" class="catalogue-item">
-      <div>
-        <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
-        <h1 class="catalogue-title">{{ post.title }}</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          {% if post.description %}
-            {{ post.description }}
-          {% else %}
-            {{ post.content | truncatewords: 30 | strip_html }}
-          {% endif %}
-        </p>
-
+    <li class="post-list-item">
+      <p class="post-meta">{{ post.date | date: "%Y年%m月%d日" }}</p>
+      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <div class="post-excerpt">
+        {{ post.description | strip_html | truncatewords: 30 }}
       </div>
-    </a>
+      <div class="post-tags">
+        {% for tag in post.tags %}
+          {% assign tag_slug = tag | slugify %}
+          <a href="{{ site.baseurl }}/tags/#{{ tag_slug }}" 
+             class="post-tag {% if tag_slug == 'rag' %}rag{% elsif tag_slug == 'ai' %}ai{% else %}tech{% endif %}">
+            {{ tag }}
+          </a>
+        {% endfor %}
+      </div>
+    </li>
   {% endfor %}
-</div>
-
-{% if site.posts.size == 0 %}
-<div class="catalogue">
-  <div class="catalogue-item">
-    <div>
-      <h1 class="catalogue-title">欢迎来到我的博客！</h1>
-      <div class="catalogue-line"></div>
-      <p>还没有文章，敬请期待...</p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
-  {% endif %}
-
-  <span>{{ paginator.page }}</span>
-</div>
+</ul>
