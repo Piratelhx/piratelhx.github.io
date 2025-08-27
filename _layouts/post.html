@@ -8,9 +8,9 @@ layout: default
   <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
   
   {% if page.tags.size > 0 %}
-  <div class="post-tags">
+  <div class="post-card-tags" style="margin: 1.5rem 0;">
     {% for tag in page.tags %}
-      <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
+      <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="post-card-tag">{{ tag }}</a>
     {% endfor %}
   </div>
   {% endif %}
