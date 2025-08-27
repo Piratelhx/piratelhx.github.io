@@ -36,11 +36,16 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
 # 分页设置
-paginate: 5
-paginate_path: "/page:num/"
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+  collection: 'posts'
+  sort_field: 'date'
+  sort_reverse: true
 
 # Permalink settings
 permalink: /posts/:title/
