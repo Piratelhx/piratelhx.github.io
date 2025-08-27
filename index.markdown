@@ -1,8 +1,6 @@
 ---
 layout: default
 title: Home
-pagination:
-  enabled: true
 ---
 
 <ul class="post-list">
@@ -26,7 +24,7 @@ pagination:
   {% endfor %}
 </ul>
 
-<!-- Pagination links -->
+<!-- Pagination -->
 <div class="pagination">
   {% if paginator.previous_page %}
     <a href="{{ paginator.previous_page_path }}" class="previous">上一页</a>
@@ -35,7 +33,7 @@ pagination:
   {% endif %}
   
   <span class="page_number">第 {{ paginator.page }} 页 / 共 {{ paginator.total_pages }} 页</span>
-
+  
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path }}" class="next">下一页</a>
   {% else %}

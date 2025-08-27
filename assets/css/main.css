@@ -166,26 +166,26 @@ body {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .pagination a {
-  color: #4c6ef5;
-  background-color: #e7f5ff;
-  transition: background-color 0.3s;
+  color: #fff;
+  background-color: #4c6ef5;
 }
 
 .pagination a:hover {
-  background-color: #d0ebff;
+  background-color: #364fc7;
 }
 
 .pagination .disabled {
-  color: #adb5bd;
+  color: #aaa;
   background-color: #f1f3f5;
   cursor: not-allowed;
 }
 
 .pagination .page_number {
-  color: #495057;
+  color: #555;
   font-weight: 500;
 }
 
