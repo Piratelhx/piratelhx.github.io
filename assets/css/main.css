@@ -162,11 +162,13 @@ body {
 }
 
 .pagination a, .pagination span {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .pagination a {
@@ -176,17 +178,20 @@ body {
 
 .pagination a:hover {
   background-color: #364fc7;
+  transform: translateY(-2px);
 }
 
 .pagination .disabled {
   color: #aaa;
   background-color: #f1f3f5;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .pagination .page_number {
   color: #555;
   font-weight: 500;
+  background-color: transparent;
 }
 
 /* Tags Page */
