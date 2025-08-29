@@ -7,9 +7,36 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px; /* 从800px增加到1200px */
     margin: 0 auto;
     padding: 20px;
+}
+
+/* 添加响应式设计 */
+@media (max-width: 1280px) {
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .post-card-header {
+        padding: 25px;
+    }
+    
+    .post-content {
+        padding: 25px;
+    }
+    
+    .post-title-main {
+        font-size: 2.2rem;
+    }
 }
 
 /* Header */
