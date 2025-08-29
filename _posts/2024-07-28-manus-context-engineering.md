@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "构建聪明Agent的秘密：Manus团队的上下文工程实践全揭秘"
+title: "揭秘Manus工程师的秘密武器：上下文工程实践全揭秘"
 date: 2024-07-28
-categories: ["Agent系统", "上下文工程", "KV Cache", "模型推理", "工具管理"]
-tags: ["Agent系统", "上下文工程", "KV Cache", "模型推理", "工具管理"]
+categories: ["工程", "AI"]
+tags: ["工程", "AI"]
 description: "构建聪明Agent的秘密武器：Manus团队的上下文工程实践全揭秘。为什么不训练模型而要训练上下文？从KV缓存优化到工具管理，深度解析AI代理系统的核心技术。"
 ---
 

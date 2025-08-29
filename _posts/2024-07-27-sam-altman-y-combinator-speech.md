@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AI的未来蓝图：深度解析Sam Altman在Y Combinator的标志性演讲"
+title: "Sam Altman Y Combinator 演讲：创业者的成功解码"
 date: 2024-07-27
 categories: ["人工智能", "创业战略", "未来科技"]
 tags: ["人工智能", "创业战略", "未来科技"]
