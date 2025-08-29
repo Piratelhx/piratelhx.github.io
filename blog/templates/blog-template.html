@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ARTICLE_TITLE}} - 昨夜西风的博客</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/blog-common.css">
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="text-lg font-bold text-blue-600 hover:text-blue-700">昨夜西风</a>
+            <nav class="flex items-center space-x-4">
+                <a href="../aiproduct/index.html" class="text-sm text-gray-600 hover:text-blue-600 transition-colors">AI作品集</a>
+                <a href="index.html" class="back-link px-3 py-2 rounded-md text-sm font-medium">返回博客</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <article class="max-w-4xl mx-auto bg-white">
+            <div class="article-container">
+                <header class="article-header">
+                    <h1 class="article-title">{{ARTICLE_TITLE}}</h1>
+                    <div class="article-meta">
+                        <time datetime="{{ARTICLE_DATE_ISO}}" class="article-date">发布于：{{ARTICLE_DATE_DISPLAY}}</time>
+                        <div class="article-tags">
+                            {{ARTICLE_TAGS}}
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="blog-content">
+                    {{ARTICLE_CONTENT}}
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer py-6 text-center mt-auto">
+        <div class="container mx-auto px-6">
+            <p class="text-sm">&copy; <span id="currentYear"></span> 昨夜西风, 保留所有权利。</p>
+            <a href="../index.html" class="text-sm text-blue-600 hover:text-blue-700">返回主页</a>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

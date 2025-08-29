@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从混沌中“雕刻”出想象力：一文看懂扩散模型背后的技术魔法</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="styles/blog-common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50">
+    <div id="header-placeholder"></div>
+
+    <div class="article-container max-w-4xl mx-auto bg-white shadow-lg rounded-lg mt-8 mb-8">
+        <header class="article-header text-center border-b pb-8">
+            <h1 class="article-title text-4xl font-bold text-gray-800">🧠 从混沌中“雕刻”出想象力：一文看懂扩散模型背后的技术魔法</h1>
+            <div class="article-meta mt-4 text-gray-500">
+                <span class="article-date">2025-07-27</span>
+                <div class="article-tags mt-2">
+                    <span class="tag tag-primary">人工智能</span>
+                    <span class="tag tag-purple">扩散模型</span>
+                    <span class="tag-red">生成AI</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="blog-content py-8">
+            <blockquote class="text-gray-500 italic mb-8">
+                “一个宇航员在月球上骑马。” <br>
+                当我们在AI工具中输入这样一句话，模型如何一步步“理解”这些词语，并最终“创作”出符合我们期待的视频画面？ <br>
+                今天这篇文章，我将结合我最近观看的一支极为精彩的视频（<a href="https://www.youtube.com/watch?v=iv-5mZ_9CPY" class="text-blue-500 hover:underline">原视频链接</a>），系统梳理扩散模型（Diffusion Models）背后的原理，并解析它如何将自然语言、物理学思想与深度学习模型巧妙融合，构建出令人惊艳的生成式AI系统。
+            </blockquote>
+
+            <h2 class="flex items-center text-2xl font-semibold text-gray-700 mt-12 mb-6"><i class="fas fa-check-circle mr-3 text-green-500"></i>一、扩散模型的本质：逆向建构的创世工程</h2>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">1.1 高维空间中的“图像粒子”</h3>
+            <p>我们熟悉的一张图像，其实可以被看作是高维空间中的一个点。比如，一张 128x128 的 RGB 图像，本质上就是一个 49,152 维的向量。所有真实图像的集合构成了一个极小、但结构复杂的“数据流形（Data Manifold）”。</p>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">1.2 正向过程：从有序走向混沌</h3>
+            <p>扩散模型的第一步，叫 前向过程（Forward Process） ，它会将图像逐步加噪，直到变成纯高斯噪声。</p>
+            <p><strong>类比：</strong>好比把墨水滴入清水中，墨水粒子慢慢扩散，图像信息逐渐“消失”。</p>
+            <p>数学上，这一过程是 <strong>完全可建模</strong> 的。我们可以精准计算任意加噪步骤 t 时的分布 x_t | x_0 。</p>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">1.3 逆向过程：从噪声中“雕刻”真实</h3>
+            <p>真正让人惊艳的是 <strong>逆向过程（Reverse Process）</strong> ：模型从一个随机噪声出发，逐步“去噪”，最终还原出一张或一段与提示相符的图像/视频。</p>
+            <p>每一步的关键是预测出“这一步添加了多少噪声”，并将其从当前图像中减去。</p>
+            <p>整个过程类似于在高维空间中，从混沌的一点“逆向漫步”，最终落回那个有意义的图像子空间。</p>
+
+            <h2 class="flex items-center text-2xl font-semibold text-gray-700 mt-12 mb-6"><i class="fas fa-search mr-3 text-blue-500"></i>二、关键技术组件：将语言转化为引导力量</h2>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">2.1 CLIP：让AI听得懂人话</h3>
+            <p>CLIP 是连接文本与图像世界的“桥梁”，由 OpenAI 提出，通过对比学习训练而成。</p>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+                <li><strong>训练目标</strong>：使配对的图文距离更近，不相关的距离更远。</li>
+                <li><strong>嵌入空间</strong>：训练完成后，无论是图像还是文本，都可以被编码为高维向量，且 <strong>语义相近 → 向量相近</strong> 。</li>
+                <li><strong>意义</strong>：它让我们能用一句话，引导模型从无尽的图像空间中选出我们想要的那一类。</li>
+            </ul>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">2.2 DDPM 与 DDIM：速度与质量的权衡</h3>
+            <h4 class="text-lg font-semibold text-gray-600 mt-6 mb-2">🌀 DDPM（Denoising Diffusion Probabilistic Models）</h4>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+                <li>每一步生成都遵循一个 <strong>随机分布</strong> ，会再添加一部分噪声，生成过程接近“漫步”。</li>
+                <li><strong>优点</strong>：图像质量极高。</li>
+                <li><strong>缺点</strong>：太慢，往往要迭代 1000 步。</li>
+            </ul>
+            <h4 class="text-lg font-semibold text-gray-600 mt-6 mb-2">⚡ DDIM（Denoising Diffusion Implicit Models）</h4>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+                <li>引入了 <strong>确定性的生成路径</strong> ，不再在每步添加新噪声。</li>
+                <li><strong>优点</strong>：可以使用更大步长，只需几十步即可完成生成，速度提升巨大。</li>
+                <li><strong>影响</strong>：这是实际部署生成模型（如图片/视频生成器）不可或缺的技术优化。</li>
+            </ul>
+
+            <h2 class="flex items-center text-2xl font-semibold text-gray-700 mt-12 mb-6"><i class="fas-fa-compass mr-3 text-purple-500"></i>三、Classifier-Free Guidance：精准控制生成内容的“魔法引导”</h2>
+            <p>这部分内容号称整支视频中最精彩的一段，它解释了一个重要的技巧—— <strong>Classifier-Free Guidance（CFG）</strong> ，是目前主流图像/视频生成工具如 Midjourney、Runway 等背后的关键策略。</p>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">3.1 为什么要“引导”？</h3>
+            <p>即使有了 CLIP 提示，模型生成的内容有时依然会跑偏——“差不多对，但不完全是我想要的”。这就是引导强度不足的问题。</p>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">3.2 CFG 的机制：双重人格预测</h3>
+            <p>每一步去噪时，模型会进行两次预测：</p>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+                <li><strong>无条件预测</strong>：不看文本提示，凭经验生成。</li>
+                <li><strong>有条件预测</strong>：加入提示语（如“一只戴墨镜的猫”）进行预测。</li>
+            </ul>
+            <p>然后计算出两者之间的 <strong>引导向量差值</strong> ，并按比例加入到最终的预测中，公式如下：</p>
+            <pre class="bg-gray-100 p-4 rounded-md my-4"><code>最终噪声 = 无条件噪声 + CFG系数 × (有条件噪声 - 无条件噪声)</code></pre>
+            <p><strong>CFG 系数</strong>：越大，引导越强；越小，模型越“自由发挥”。</p>
+            <h3 class="text-xl font-semibold text-gray-600 mt-8 mb-4">3.3 Bonus：负面提示（Negative Prompting）</h3>
+            <p>进一步优化效果的方式是加入负面提示，如“畸形、低画质、奇怪的手指”等。</p>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+                <li>模型将这些负向特征预测为一个向量。</li>
+                <li>在最终引导中 <strong>将其减去</strong> ，从而避免生成这些“错误特征”。</li>
+            </ul>
+
+            <h2 class="flex items-center text-2xl font-semibold text-gray-700 mt-12 mb-6"><i class="fas fa-sync-alt mr-3 text-red-500"></i>四、全流程整合：从文本到视频的生成逻辑</h2>
+            <p>最后我们把流程串起来，完整复现一次从 prompt 到生成视频的过程：</p>
+            <ol class="list-decimal list-inside space-y-2 mt-4">
+                <li>输入提示语 （正面 & 负面）。</li>
+                <li>CLIP 编码 为高维语义向量。</li>
+                <li>初始化 为随机噪声视频帧。</li>
+                <li>迭代去噪循环（核心） ：
+                    <ul class="list-disc list-inside ml-6 space-y-1 mt-2">
+                        <li>每一步都进行无条件、有条件、负面预测。</li>
+                        <li>利用 CFG 计算最终去噪向量。</li>
+                        <li>更新当前帧。</li>
+                    </ul>
+                </li>
+                <li>输出结果 ：符合语义提示的清晰、高质量视频帧逐步显现。</li>
+            </ol>
+
+            <h2 class="flex items-center text-2xl font-semibold text-gray-700 mt-12 mb-6"><i class="fas fa-star mr-3 text-yellow-500"></i>总结：AI“创世”的工程美学</h2>
+            <p>扩散模型不是简单的黑盒，它是深度融合 <strong>概率建模、物理类比、对比学习、神经网络建模</strong> 的综合产物。它的美妙之处在于：</p>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+                <li>将复杂的图像数据看作高维空间中的“粒子”。</li>
+                <li>用物理学“扩散-反扩散”的思想驱动生成。</li>
+                <li>通过引导（CFG）机制，在混沌中雕刻出我们想要的秩序。</li>
+            </ul>
+            <p class="mt-4">这就是现代 AI 视频生成背后的工程奇迹。</p>
+            <p>我们不再只是“调参玩家”，而是一步步拆解技术背后原理，重新建立对生成模型的认知结构。</p>
+
+        </main>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
